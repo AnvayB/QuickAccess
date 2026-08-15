@@ -1,0 +1,2183 @@
+[
+  {
+    "id": "feng-cha",
+    "name": "Feng Cha",
+    "location": [
+      "Milpitas"
+    ],
+    "cuisine": "Taiwanese",
+    "type": [
+      "Boba"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "yoshi-sushi",
+    "name": "Yoshi Sushi",
+    "location": [
+      "Milpitas"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "pho-mai-1-noodle-house",
+    "name": "Phở Mai #1 Noodle House",
+    "location": [
+      "Milpitas"
+    ],
+    "cuisine": "Vietnamese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "new-pho-saigon",
+    "name": "New Phở Saigon",
+    "location": [
+      "Milpitas"
+    ],
+    "cuisine": "Vietnamese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "sunright-tea-studio",
+    "name": "Sunright Tea Studio",
+    "location": [
+      "Milpitas",
+      "Sunnyvale"
+    ],
+    "cuisine": "Taiwanese",
+    "type": [
+      "Boba"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "chick-tea",
+    "name": "Chick & Tea",
+    "location": [
+      "Milpitas"
+    ],
+    "cuisine": "Taiwanese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "xing-fu-tang",
+    "name": "Xing Fu Tang",
+    "location": [
+      "Milpitas"
+    ],
+    "cuisine": "Taiwanese",
+    "type": [
+      "Boba"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "k-onthego",
+    "name": "K OnTheGo",
+    "location": [
+      "Milpitas"
+    ],
+    "cuisine": "Taiwanese",
+    "type": [
+      "Boba",
+      "Cafe/Bakery"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "smoove",
+    "name": "Smoove",
+    "location": [
+      "Milpitas"
+    ],
+    "cuisine": "Taiwanese",
+    "type": [
+      "Boba",
+      "Ice Cream"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "mikayla-s-cafe",
+    "name": "Mikayla's Cafe",
+    "location": [
+      "Milpitas"
+    ],
+    "cuisine": "American",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "ibu-taproom-bottle-shop",
+    "name": "IBU Taproom & Bottle Shop",
+    "location": [
+      "Milpitas"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Bar/Brewery"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "poki-run",
+    "name": "Poki Run",
+    "location": [
+      "Milpitas"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "layang-layang",
+    "name": "Layang Layang",
+    "location": [
+      "Milpitas"
+    ],
+    "cuisine": "Malaysian",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "slice-house",
+    "name": "Slice House",
+    "location": [
+      "Milpitas"
+    ],
+    "cuisine": "Italian",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "bun-appetit-thu-sun-only",
+    "name": "Bun Appétit (Thu - Sun only)",
+    "location": [
+      "Fremont"
+    ],
+    "cuisine": "Chinese",
+    "type": [
+      "Cafe/Bakery"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "a-sack-of-potatoes",
+    "name": "A Sack of Potatoes",
+    "location": [
+      "Fremont"
+    ],
+    "cuisine": "Chinese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "suju-s-coffee",
+    "name": "Suju's Coffee",
+    "location": [
+      "Fremont"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Cafe/Bakery"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "koja-kitchen",
+    "name": "KoJa Kitchen",
+    "location": [
+      "Fremont"
+    ],
+    "cuisine": "Korean",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "sojo-ramen",
+    "name": "SOJO Ramen",
+    "location": [
+      "Fremont"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "posh-bagels",
+    "name": "Posh Bagels",
+    "location": [
+      "Fremont"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Cafe/Bakery"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "the-breeze-cafe",
+    "name": "The Breeze Cafe",
+    "location": [
+      "Fremont"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "rita-s-italian-ice-and-frozen-custard",
+    "name": "Rita's Italian Ice and Frozen Custard",
+    "location": [
+      "Fremont"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Ice Cream"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "milkcow-soft-serve",
+    "name": "Milkcow Soft Serve",
+    "location": [
+      "Fremont"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Ice Cream"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "cauldron-ice-cream",
+    "name": "Cauldron Ice Cream",
+    "location": [
+      "Fremont",
+      "San Jose"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Ice Cream"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "soho-modern-japanese",
+    "name": "SOHO Modern Japanese ($$$)",
+    "location": [
+      "Fremont"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "halal-guys",
+    "name": "Halal Guys",
+    "location": [
+      "Fremont",
+      "San Jose"
+    ],
+    "cuisine": "Arabian",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "mr-sun-tea",
+    "name": "Mr. Sun Tea",
+    "location": [
+      "Fremont"
+    ],
+    "cuisine": "Taiwanese",
+    "type": [
+      "Boba"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "pints-of-joy",
+    "name": "Pints of Joy",
+    "location": [
+      "Fremont",
+      "Sunnyvale"
+    ],
+    "cuisine": "Indian",
+    "type": [
+      "Ice Cream"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "wadaya",
+    "name": "Wadaya",
+    "location": [
+      "Fremont"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "mochicream-j-sweets",
+    "name": "Mochicream / J. Sweets",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Store"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "house-of-bagels",
+    "name": "House of Bagels",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Cafe/Bakery"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "pressed-juicery",
+    "name": "Pressed Juicery",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Store"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "ike-s-love-and-sandwiches",
+    "name": "Ike's Love and Sandwiches",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "pastelaria-adega",
+    "name": "Pastelaria Adega",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "Portugese",
+    "type": [
+      "Cafe/Bakery"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "new-hoa-dang-vegetarian",
+    "name": "New Hoa Dang Vegetarian",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "Vietnamese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "izumi-matcha",
+    "name": "Izumi Matcha",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Boba"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "poke-house",
+    "name": "Poke House",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "dumpling-time",
+    "name": "Dumpling Time",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "Chinese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "mendocino-farms",
+    "name": "Mendocino Farms",
+    "location": [
+      "San Jose",
+      "Palo Alto"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "rabbit-rabbit-tea",
+    "name": "Rabbit Rabbit Tea",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "Taiwanese",
+    "type": [
+      "Boba"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "salt-straw",
+    "name": "Salt & Straw",
+    "location": [
+      "San Jose",
+      "Palo Alto"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Ice Cream"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "n7-draft-tea-coffee",
+    "name": "N7 Draft Tea + Coffee",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "Taiwanese",
+    "type": [
+      "Boba"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "jinya-ramen-bar",
+    "name": "JINYA Ramen Bar",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "the-breakfast-club-at-midtown",
+    "name": "The Breakfast Club at Midtown",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "k-cafe-patisserie-tea-house",
+    "name": "K Cafe Patisserie & Tea House",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "Taiwanese",
+    "type": [
+      "Cafe/Bakery"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "san-jose-candy-kitchen",
+    "name": "San Jose Candy Kitchen",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Store"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "whispers-cafe-and-creperie",
+    "name": "Whispers Cafe and Creperie",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "santo-market-japantown",
+    "name": "Santo Market (Japantown)",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Store",
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "insomniac-cookies",
+    "name": "Insomniac Cookies",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Cafe/Bakery"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "mochinut-mochi-donuts",
+    "name": "Mochinut (mochi donuts)",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Cafe/Bakery"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "mazala-pizza",
+    "name": "Mazala Pizza",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "Indian",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "bobaholics",
+    "name": "Bobaholics",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "Taiwanese",
+    "type": [
+      "Boba"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "sushi-confidential",
+    "name": "Sushi [Confidential]",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "milk-belly-factory",
+    "name": "Milk Belly Factory",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Cafe/Bakery"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "dough-zone-dumpling-house",
+    "name": "Dough Zone Dumpling House",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "Chinese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "aloha-fresh",
+    "name": "Aloha Fresh",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "fancy-flavors-bakeshop",
+    "name": "Fancy Flavors Bakeshop",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "French",
+    "type": [
+      "Cafe/Bakery"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "blue-monkey-cafe",
+    "name": "Blue Monkey Cafe",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "Vietnamese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "sofa-market",
+    "name": "SOFA Market",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "Variety",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "fugetsu",
+    "name": "Fugetsu",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Store"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "haiku-teahouse",
+    "name": "Haiku Teahouse",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "Taiwanese",
+    "type": [
+      "Boba"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "the-club-on-post",
+    "name": "The Club on Post",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "American",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "world-market-worldwide-snax-licorice",
+    "name": "World Market: worldwide snax + licorice",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Store"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "coffee-water-lab",
+    "name": "Coffee & Water Lab",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Boba",
+      "Cafe/Bakery"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "frank-furter-s-hot-dogs",
+    "name": "Frank & Furter's Hot Dogs",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "American",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "story-s-organic-milk-bar",
+    "name": "Story's Organic Milk Bar",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "Vietnamese",
+    "type": [
+      "Ice Cream"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "paper-planes",
+    "name": "Paper Planes",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Bar/Brewery"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "nomikai",
+    "name": "Nomikai",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Bar/Brewery"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "haberdasher",
+    "name": "Haberdasher",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "American",
+    "type": [
+      "Bar/Brewery"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "dr-funk",
+    "name": "Dr. Funk",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Bar/Brewery"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "eos-nyx",
+    "name": "Eos & Nyx",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "Mediterranean",
+    "type": [
+      "Bar/Brewery",
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "market-beer-company",
+    "name": "Market Beer Company",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "American",
+    "type": [
+      "Bar/Brewery"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "ca-fish-grill",
+    "name": "CA Fish Grill",
+    "location": [
+      "San Jose"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "valley-goat",
+    "name": "Valley Goat",
+    "location": [
+      "Sunnyvale"
+    ],
+    "cuisine": "American",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "hanabusa-cafe",
+    "name": "Hanabusa Cafe",
+    "location": [
+      "Sunnyvale"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Cafe/Bakery"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "cowboy-coffee",
+    "name": "Cowboy Coffee",
+    "location": [
+      "Sunnyvale"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Boba"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "crepevine",
+    "name": "Crepevine",
+    "location": [
+      "Mountain View"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "alexander-s-patisserie",
+    "name": "Alexander's Pâtisserie",
+    "location": [
+      "Mountain View"
+    ],
+    "cuisine": "French",
+    "type": [
+      "Cafe/Bakery"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "maison-alyzee",
+    "name": "Maison Alyzée ($$$)",
+    "location": [
+      "Mountain View"
+    ],
+    "cuisine": "French",
+    "type": [
+      "Cafe/Bakery"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "asian-box",
+    "name": "Asian Box",
+    "location": [
+      "Mountain View"
+    ],
+    "cuisine": "Vietnamese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "bloom-bagels",
+    "name": "Bloom Bagels",
+    "location": [
+      "Campbell"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Cafe/Bakery"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "mo-s-breakfast",
+    "name": "Mo's Breakfast",
+    "location": [
+      "Campbell"
+    ],
+    "cuisine": "American",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "croffles-co",
+    "name": "Croffles & Co.",
+    "location": [
+      "Pleasanton"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Cafe/Bakery"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "bober-tea-coffee",
+    "name": "Bober Tea & Coffee",
+    "location": [
+      "Pleasanton"
+    ],
+    "cuisine": "Vietnamese",
+    "type": [
+      "Boba"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "kajiken",
+    "name": "Kajiken",
+    "location": [
+      "San Mateo"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "wursthall",
+    "name": "Wursthall",
+    "location": [
+      "San Mateo"
+    ],
+    "cuisine": "German",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "himawari-ramen",
+    "name": "Himawari Ramen",
+    "location": [
+      "San Mateo"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "cheeseboard-pizza",
+    "name": "Cheeseboard Pizza",
+    "location": [
+      "Berkeley"
+    ],
+    "cuisine": "American",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "shu-shia",
+    "name": "Shu Shia",
+    "location": [
+      "Cupertino"
+    ],
+    "cuisine": "Chinese",
+    "type": [
+      "Boba"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "tiger-sugar",
+    "name": "Tiger Sugar",
+    "location": [
+      "Cupertino"
+    ],
+    "cuisine": "Taiwanese",
+    "type": [
+      "Boba"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "sweet-maple",
+    "name": "Sweet Maple",
+    "location": [
+      "Cupertino",
+      "Palo Alto"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "aqui-s",
+    "name": "Aqui's",
+    "location": [
+      "Cupertino"
+    ],
+    "cuisine": "Mexican",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "rubio-s-coastal-grill",
+    "name": "Rubio's Coastal Grill",
+    "location": [
+      "Cupertino"
+    ],
+    "cuisine": "Mexican",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "horinori-ramen",
+    "name": "Horinori Ramen",
+    "location": [
+      "Cupertino"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "siam-station",
+    "name": "Siam Station",
+    "location": [
+      "Cupertino"
+    ],
+    "cuisine": "Thai",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "shang-yu-lin",
+    "name": "Shang Yu Lin",
+    "location": [
+      "Cupertino"
+    ],
+    "cuisine": "Taiwanese",
+    "type": [
+      "Boba"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "myungrang-hotdog",
+    "name": "Myungrang Hotdog",
+    "location": [
+      "Cupertino"
+    ],
+    "cuisine": "Korean",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "chicha-sanchen",
+    "name": "Chicha Sanchen",
+    "location": [
+      "Cupertino"
+    ],
+    "cuisine": "Taiwanese",
+    "type": [
+      "Boba"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "oklava",
+    "name": "Oklava",
+    "location": [
+      "Palo Alto"
+    ],
+    "cuisine": "Turkish",
+    "type": [
+      "Cafe/Bakery"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "cafe-venetia",
+    "name": "Cafe Venetia",
+    "location": [
+      "Palo Alto"
+    ],
+    "cuisine": "Italian",
+    "type": [
+      "Cafe/Bakery"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "rabbit-rabbit-cream",
+    "name": "Rabbit Rabbit Cream",
+    "location": [
+      "Palo Alto"
+    ],
+    "cuisine": "Taiwanese",
+    "type": [
+      "Cafe/Bakery"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "son-garden",
+    "name": "Son & Garden",
+    "location": [
+      "Palo Alto"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "the-melt",
+    "name": "The Melt",
+    "location": [
+      "Palo Alto"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "sprinkles-cupcakes",
+    "name": "Sprinkles Cupcakes",
+    "location": [
+      "Palo Alto"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Cafe/Bakery"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "rise-woodfire-pizza",
+    "name": "🍕Rise Woodfire Pizza",
+    "location": [
+      "Santa Clara",
+      "San Mateo"
+    ],
+    "cuisine": "American",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "big-mug-coffee-roaster",
+    "name": "Big Mug Coffee Roaster",
+    "location": [
+      "Santa Clara"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Cafe/Bakery"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "rantei-japanese-cuisine",
+    "name": "Rantei Japanese Cuisine",
+    "location": [
+      "Santa Clara"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "katsuyaki-bento-box-meals",
+    "name": "KATSUYAKI (bento box meals)",
+    "location": [
+      "Santa Clara"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "world-wrapps",
+    "name": "World Wrapps",
+    "location": [
+      "Santa Clara"
+    ],
+    "cuisine": "Variety",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "rocko-s-ice-cream-tacos",
+    "name": "Rocko's Ice Cream Tacos",
+    "location": [
+      "Santa Clara"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Ice Cream"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "meet-fresh",
+    "name": "Meet Fresh",
+    "location": [
+      "Santa Clara",
+      "San Jose"
+    ],
+    "cuisine": "Taiwanese",
+    "type": [
+      "Ice Cream"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "crepes-bistro",
+    "name": "Crepes Bistro",
+    "location": [
+      "Santa Clara"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "nha-cafe",
+    "name": "nha Cafe",
+    "location": [
+      "Santa Clara"
+    ],
+    "cuisine": "Vietnamese",
+    "type": [
+      "Boba"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "ondam",
+    "name": "Ondam",
+    "location": [
+      "Santa Clara"
+    ],
+    "cuisine": "Korean",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "1oz-coffee",
+    "name": "1oz Coffee",
+    "location": [
+      "Santa Clara",
+      "Mountain View"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Cafe/Bakery"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "merchant-roots1",
+    "name": "Merchant Roots1",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "American",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "garden-creamery",
+    "name": "Garden Creamery",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Ice Cream"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "kiss-of-matcha",
+    "name": "Kiss of Matcha",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Boba",
+      "Ice Cream",
+      "Cafe/Bakery"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "live-sushi-bar",
+    "name": "Live Sushi Bar",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "mensho-tokyo",
+    "name": "Mensho Tokyo",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "the-grove-yerba-buena",
+    "name": "The Grove - Yerba Buena",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "pizzeria-delfina",
+    "name": "Pizzeria Delfina",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Italian",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "ramen-yamadaya",
+    "name": "Ramen Yamadaya",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "verve-coffee-roasters",
+    "name": "Verve Coffee Roasters",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Cafe/Bakery"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "yellow-moto-pizzeria",
+    "name": "Yellow Moto Pizzeria",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Italian",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "raw-sugar-factory",
+    "name": "Raw Sugar Factory",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "dandelion-chocolate",
+    "name": "Dandelion Chocolate",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Cafe/Bakery"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "kantine",
+    "name": "Kantine",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Scandanavian",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "delah-coffee-house",
+    "name": "Delah Coffee House",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Arabian",
+    "type": [
+      "Cafe/Bakery"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "jina-bakes",
+    "name": "Jina Bakes",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Cafe/Bakery"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "arsicault-bakery",
+    "name": "Arsicault Bakery",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "French",
+    "type": [
+      "Cafe/Bakery"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "marufuku-ramen-ananya-s-rec",
+    "name": "Marufuku Ramen (Ananya's rec)",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "hinodeya-ramen",
+    "name": "Hinodeya Ramen",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "tea-hut",
+    "name": "Tea Hut",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Taiwanese",
+    "type": [
+      "Boba"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "bansang",
+    "name": "Bansang",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Korean",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "luisa-s-ristorante-wine-bar-since-1959",
+    "name": "Luisa's Ristorante Wine Bar since 1959",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Italian",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "kitchen-story",
+    "name": "Kitchen Story",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "American",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "u-dessert-story",
+    "name": "U :Dessert Story",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Cafe/Bakery"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "elephant-sushi",
+    "name": "Elephant Sushi",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "robin",
+    "name": "Robin",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "omakase",
+    "name": "Omakase",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "good-luck-dim-sum",
+    "name": "Good Luck Dim Sum",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Chinese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "dragon-beaux-dim-sum",
+    "name": "Dragon Beaux (dim sum)",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Chinese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "hong-kong-lounge-dim-sum",
+    "name": "Hong Kong Lounge (dim sum)",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Chinese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "han-li-kwan",
+    "name": "Han Li Kwan",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Korean",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "daeho",
+    "name": "Daeho",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Korean",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "san-ho-wan",
+    "name": "San Ho Wan",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Korean",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "san-tung",
+    "name": "San Tung",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Chinese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "sizzling-pot-king",
+    "name": "Sizzling Pot King",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Chinese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "r-g-lounge",
+    "name": "R&G Lounge",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Chinese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "hinoya-curry",
+    "name": "Hinoya Curry",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "udon-mugizo",
+    "name": "Udon Mugizo",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "nojo",
+    "name": "Nojo",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "shabu-club-hot-pot",
+    "name": "Shabu Club (hot pot)",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Chinese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "tasty-pot-hot-pot",
+    "name": "Tasty Pot (hot pot)",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Chinese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "nabe-hot-pot",
+    "name": "Nabe (hot pot)",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Chinese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "golden-star",
+    "name": "Golden Star",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Vietnamese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "tin-vietnamese",
+    "name": "Tin Vietnamese",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Vietnamese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "perilla",
+    "name": "Perilla",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Vietnamese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "milkbomb-ice-cream-sandwiches",
+    "name": "Milkbomb Ice Cream (sandwiches)",
+    "location": [
+      "San Francisco",
+      "Berkeley"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Ice Cream"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "lapisara-eatery",
+    "name": "Lapisara Eatery",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "American",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "matcha-cafe-maiko",
+    "name": "Matcha Cafe Maiko",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Ice Cream"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "balboa-cafe",
+    "name": "Balboa Cafe",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "American",
+    "type": [
+      "Bar/Brewery",
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "smuggler-s-cove",
+    "name": "Smuggler's Cove",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Bar/Brewery"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "wildhawk",
+    "name": "Wildhawk",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Bar/Brewery"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "mr-tipple-s-jazz-club",
+    "name": "Mr. Tipple's Jazz Club",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "American",
+    "type": [
+      "Bar/Brewery"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "the-snug-cocktail-bar",
+    "name": "The Snug Cocktail Bar",
+    "location": [
+      "San Francisco"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Bar/Brewery"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "red-88",
+    "name": "Red 88",
+    "location": [
+      "Davis"
+    ],
+    "cuisine": "Thai",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "fire-wings",
+    "name": "Fire Wings",
+    "location": [
+      "Davis",
+      "San Jose"
+    ],
+    "cuisine": "Variety",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "burgers-brew",
+    "name": "Burgers & Brew",
+    "location": [
+      "Davis"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "three-ladies-cafe",
+    "name": "Three Ladies Cafe",
+    "location": [
+      "Davis"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Cafe/Bakery"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "black-frog-coffee",
+    "name": "Black Frog Coffee",
+    "location": [
+      "Davis"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Cafe/Bakery"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "temple-coffee-roasters",
+    "name": "Temple Coffee Roasters",
+    "location": [
+      "Davis"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Cafe/Bakery"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "zen-toro-japanese-cuisine",
+    "name": "Zen Toro Japanese Cuisine",
+    "location": [
+      "Davis"
+    ],
+    "cuisine": "Japanese",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "kin-thai-street-eatery",
+    "name": "Kin Thai Street Eatery",
+    "location": [
+      "Sacramento"
+    ],
+    "cuisine": "Thai",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "mix-huevos",
+    "name": "Mix Huevos",
+    "location": [
+      "Los Gatos"
+    ],
+    "cuisine": "Mexican",
+    "type": [
+      "Restaurant"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "cafe-kazka",
+    "name": "Cafe Kazka",
+    "location": [
+      "Foster City"
+    ],
+    "cuisine": "Chinese",
+    "type": [
+      "Cafe/Bakery",
+      "Boba"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "grand-bazaar-foods",
+    "name": "Grand Bazaar Foods",
+    "location": [
+      "San Carlos"
+    ],
+    "cuisine": "Turkish",
+    "type": [
+      "Store"
+    ],
+    "status": "Not Visited"
+  },
+  {
+    "id": "all-raw-fizz-exotic-snacks",
+    "name": "All Raw Fizz (exotic snacks)",
+    "location": [
+      "Monterey"
+    ],
+    "cuisine": "General",
+    "type": [
+      "Store"
+    ],
+    "status": "Visited"
+  },
+  {
+    "id": "full-belly-bakery",
+    "name": "Full Belly Bakery",
+    "location": [
+      "Oakland"
+    ],
+    "cuisine": "American",
+    "type": [
+      "Cafe/Bakery"
+    ],
+    "status": "Not Visited"
+  }
+]
