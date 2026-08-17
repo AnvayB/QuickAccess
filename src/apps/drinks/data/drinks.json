@@ -1,0 +1,868 @@
+[
+  {
+    "id": "alani-nu-cosmic-stardust",
+    "name": "Alani Nu Cosmic Stardust",
+    "ranking": 10,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "celsius-peach-vibe",
+    "name": "Celsius Peach Vibe",
+    "ranking": 10,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "notes": "white peach",
+    "type": "Energy Drink"
+  },
+  {
+    "id": "alani-nu-winter-wonderland",
+    "name": "Alani Nu Winter Wonderland",
+    "ranking": 10,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "reign-kiwi-blend",
+    "name": "Reign Kiwi Blend",
+    "ranking": 10,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "celsius-cola",
+    "name": "Celsius Cola",
+    "ranking": 10,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "monster-white",
+    "name": "Monster (white)",
+    "ranking": 10,
+    "caffeineMg": 160,
+    "sugarG": 0,
+    "notes": "good, citrus",
+    "type": "Energy Drink"
+  },
+  {
+    "id": "celsius-cherry-cola",
+    "name": "Celsius Cherry Cola",
+    "ranking": 9,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "notes": "tastes better than Coke",
+    "type": "Energy Drink"
+  },
+  {
+    "id": "prime-hydration-lemon-lime",
+    "name": "PRIME Hydration Lemon Lime",
+    "ranking": 9,
+    "caffeineMg": 0,
+    "sugarG": 2,
+    "type": "Hydration Drink"
+  },
+  {
+    "id": "red-bull-original",
+    "name": "Red Bull Original",
+    "ranking": 9,
+    "caffeineMg": 114,
+    "sugarG": 38,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "red-bull-peach-nectarine",
+    "name": "Red Bull Peach-Nectarine",
+    "ranking": 9,
+    "caffeineMg": 114,
+    "sugarG": 38,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "red-bull-sugar-free",
+    "name": "Red Bull Sugar Free",
+    "ranking": 9,
+    "caffeineMg": 114,
+    "sugarG": 0,
+    "notes": "Sucralose + Acesulfame potassium",
+    "type": "Energy Drink"
+  },
+  {
+    "id": "prime-energy-lemon-lime",
+    "name": "PRIME Energy Lemon Lime",
+    "ranking": 9,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "celsius-tropical-vibe-starfruit-pineapple",
+    "name": "Celsius Tropical Vibe (Starfruit Pineapple)",
+    "ranking": 9,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "alo-allure",
+    "name": "ALO Allure",
+    "ranking": 9,
+    "caffeineMg": 0,
+    "sugarG": 39,
+    "notes": "aloe vera + mangosteen + mango",
+    "type": "Hydration Drink"
+  },
+  {
+    "id": "gt-dave-s-kombucha-guava-goddess",
+    "name": "GT Dave's Kombucha: Guava Goddess",
+    "ranking": 9,
+    "caffeineMg": 12,
+    "sugarG": 16,
+    "type": "Kombucha"
+  },
+  {
+    "id": "alani-nu-juicy-peach",
+    "name": "Alani Nu Juicy Peach",
+    "ranking": 9,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "celsius-mango-passionfruit",
+    "name": "Celsius Mango Passionfruit",
+    "ranking": 9,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "prime-energy-original",
+    "name": "PRIME Energy Original",
+    "ranking": 9,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "notes": "herbacious? interesting flavor",
+    "type": "Energy Drink"
+  },
+  {
+    "id": "c4-strawberry-guava",
+    "name": "C4 Strawberry Guava",
+    "ranking": 9,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "red-bull-curuba-elderflower",
+    "name": "Red Bull Curuba Elderflower",
+    "ranking": 9,
+    "caffeineMg": 114,
+    "sugarG": 38,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "gt-dave-kombucha-synergy-trilogy",
+    "name": "GT Dave Kombucha Synergy: Trilogy",
+    "ranking": 9,
+    "caffeineMg": 12,
+    "sugarG": 12,
+    "type": "Kombucha"
+  },
+  {
+    "id": "red-bull-zero",
+    "name": "Red Bull Zero",
+    "ranking": 9,
+    "caffeineMg": 114,
+    "sugarG": 0,
+    "notes": "Monk Fruit + Sucralose",
+    "type": "Energy Drink"
+  },
+  {
+    "id": "moshi-white-peach-yuzu",
+    "name": "Moshi White Peach & Yuzu",
+    "ranking": 9,
+    "caffeineMg": 0,
+    "sugarG": 3,
+    "notes": "fresh, kumquat citrus flavor",
+    "type": "Soda"
+  },
+  {
+    "id": "reign-valencia-orange",
+    "name": "Reign Valencia Orange",
+    "ranking": 9,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "notes": "tastes almost hydrating",
+    "type": "Energy Drink"
+  },
+  {
+    "id": "celsius-strawberry-passionfruit",
+    "name": "Celsius Strawberry Passionfruit",
+    "ranking": 9,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "celsius-peach-mango-green-tea-flat",
+    "name": "Celsius Peach Mango Green Tea (flat)",
+    "ranking": 8,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "notes": "hits too slow -> I drink too much",
+    "type": "Energy Drink"
+  },
+  {
+    "id": "alani-nu-breezeberry",
+    "name": "Alani Nu Breezeberry",
+    "ranking": 8,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "celsius-watermelon",
+    "name": "Celsius Watermelon",
+    "ranking": 8,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "prime-hydration-ice-pop",
+    "name": "PRIME Hydration Ice Pop",
+    "ranking": 8,
+    "caffeineMg": 0,
+    "sugarG": 2,
+    "type": "Hydration Drink"
+  },
+  {
+    "id": "prime-hydration-tropical-punch",
+    "name": "PRIME Hydration Tropical Punch",
+    "ranking": 8,
+    "caffeineMg": 0,
+    "sugarG": 2,
+    "type": "Hydration Drink"
+  },
+  {
+    "id": "prime-hydration-blue-raspberry",
+    "name": "PRIME Hydration Blue Raspberry",
+    "ranking": 8,
+    "caffeineMg": 0,
+    "sugarG": 2,
+    "type": "Hydration Drink"
+  },
+  {
+    "id": "prime-hydration-sticks-tropical-punch",
+    "name": "PRIME Hydration Sticks Tropical Punch",
+    "ranking": 8,
+    "caffeineMg": 0,
+    "sugarG": 2,
+    "type": "Hydration Drink"
+  },
+  {
+    "id": "gt-dave-s-kombucha-mystic-mango",
+    "name": "GT Dave's Kombucha: Mystic Mango",
+    "ranking": 8,
+    "caffeineMg": 12,
+    "sugarG": 16,
+    "type": "Kombucha"
+  },
+  {
+    "id": "red-bull-fig-apple",
+    "name": "Red Bull Fig Apple",
+    "ranking": 8,
+    "caffeineMg": 114,
+    "sugarG": 38,
+    "notes": "crisp apple",
+    "type": "Energy Drink"
+  },
+  {
+    "id": "sambazon-amazon-energy-acai-berry",
+    "name": "Sambazon Amazon Energy Açai Berry",
+    "ranking": 8,
+    "caffeineMg": 120,
+    "sugarG": 29,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "celsius-fantasy-vibe",
+    "name": "Celsius Fantasy Vibe",
+    "ranking": 8,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "prime-hydration-strawberry-watermelon",
+    "name": "PRIME Hydration Strawberry Watermelon",
+    "ranking": 8,
+    "caffeineMg": 0,
+    "sugarG": 2,
+    "type": "Hydration Drink"
+  },
+  {
+    "id": "prime-energy-tropical-punch",
+    "name": "PRIME Energy Tropical Punch",
+    "ranking": 8,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "prime-energy-orange-mango",
+    "name": "PRIME Energy Orange Mango",
+    "ranking": 8,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "prime-energy-blue-raspberry",
+    "name": "PRIME Energy Blue Raspberry",
+    "ranking": 8,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "alani-nu-kiwi-guava",
+    "name": "Alani Nu Kiwi Guava",
+    "ranking": 8,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "celsius-fuji-apple-pear",
+    "name": "Celsius Fuji Apple Pear",
+    "ranking": 8,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "red-bull-strawberry-apricot",
+    "name": "Red Bull Strawberry Apricot",
+    "ranking": 8,
+    "caffeineMg": 114,
+    "sugarG": 38,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "alo-comfort",
+    "name": "ALO Comfort",
+    "ranking": 8,
+    "caffeineMg": 0,
+    "sugarG": 35,
+    "notes": "aloe vera + watermelon + peach",
+    "type": "Hydration Drink"
+  },
+  {
+    "id": "celsius-oasis-vibe",
+    "name": "Celsius Oasis Vibe",
+    "ranking": 8,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "notes": "prickly pear + lime",
+    "type": "Energy Drink"
+  },
+  {
+    "id": "alani-nu-tropsicle",
+    "name": "Alani Nu Tropsicle",
+    "ranking": 8,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "notes": "tastes like PRIME Tropical Punch",
+    "type": "Energy Drink"
+  },
+  {
+    "id": "alani-nu-watermelon-wave",
+    "name": "Alani Nu Watermelon Wave",
+    "ranking": 8,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "prime-hydration-glowberry",
+    "name": "PRIME Hydration Glowberry",
+    "ranking": 8,
+    "caffeineMg": 0,
+    "sugarG": 1,
+    "notes": "green apple flavor",
+    "type": "Hydration Drink"
+  },
+  {
+    "id": "celsius-raspberry-acai-green-tea-flat",
+    "name": "Celsius Raspberry Açai Green Tea (flat)",
+    "ranking": 8,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "notes": "doesn't hit as hard as fizzy, unpredictable ~ mixed drink",
+    "type": "Energy Drink"
+  },
+  {
+    "id": "celsius-strawberry-guava",
+    "name": "Celsius Strawberry Guava",
+    "ranking": 8,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "prime-hydration-cherry-freeze",
+    "name": "PRIME Hydration Cherry Freeze",
+    "ranking": 8,
+    "caffeineMg": 0,
+    "sugarG": 1,
+    "notes": "similar to Tropical Punch, cool bottle tho",
+    "type": "Hydration Drink"
+  },
+  {
+    "id": "celsius-mango-passionfruit-2",
+    "name": "Celsius Mango Passionfruit",
+    "ranking": 8,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "gt-dave-s-kombucha-peach-passion",
+    "name": "GT Dave's Kombucha: Peach Passion",
+    "ranking": 8,
+    "caffeineMg": 12,
+    "sugarG": 12,
+    "type": "Kombucha"
+  },
+  {
+    "id": "bloom-peach-mango",
+    "name": "Bloom Peach Mango",
+    "ranking": 8,
+    "caffeineMg": 180,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "gt-dave-s-synergy-elderberry-juniper",
+    "name": "GT Dave's Synergy Elderberry Juniper",
+    "ranking": 8,
+    "caffeineMg": 12,
+    "sugarG": 12,
+    "notes": "tastes like flowery blackberry; not sweet",
+    "type": "Kombucha"
+  },
+  {
+    "id": "nixie-cream-soda",
+    "name": "Nixie Cream Soda",
+    "ranking": 8,
+    "caffeineMg": 0,
+    "sugarG": 0,
+    "type": "Soda"
+  },
+  {
+    "id": "reign-citrus-zest",
+    "name": "Reign Citrus Zest",
+    "ranking": 8,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "celsius-wild-berry",
+    "name": "Celsius Wild Berry",
+    "ranking": 8,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "c4-cherry-berry-limeade",
+    "name": "C4 Cherry Berry Limeade",
+    "ranking": 7.5,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "notes": "slower reaction to caffeine",
+    "type": "Energy Drink"
+  },
+  {
+    "id": "celsius-arctic-vibe",
+    "name": "Celsius Arctic Vibe",
+    "ranking": 7.5,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "alani-nu-witch-s-brew",
+    "name": "Alani Nu Witch's Brew",
+    "ranking": 7.5,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "notes": "tastes like apple",
+    "type": "Energy Drink"
+  },
+  {
+    "id": "celsius-playa-vibe",
+    "name": "Celsius Playa Vibe",
+    "ranking": 7.5,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "notes": "Pina Colada",
+    "type": "Energy Drink"
+  },
+  {
+    "id": "bloom-strawberry-watermelon",
+    "name": "Bloom Strawberry Watermelon",
+    "ranking": 7,
+    "caffeineMg": 180,
+    "sugarG": 0,
+    "notes": "tastes artificial - too strong",
+    "type": "Energy Drink"
+  },
+  {
+    "id": "alani-nu-cherry-slush",
+    "name": "Alani Nu Cherry Slush",
+    "ranking": 7,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "notes": "too sweet, cherry Kool-Aid",
+    "type": "Energy Drink"
+  },
+  {
+    "id": "prime-hydration-orange",
+    "name": "PRIME Hydration Orange",
+    "ranking": 7,
+    "caffeineMg": 0,
+    "sugarG": 2,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "prime-hydration-meta-moon",
+    "name": "PRIME Hydration Meta Moon",
+    "ranking": 7,
+    "caffeineMg": 0,
+    "sugarG": 2,
+    "notes": "tastes like Scooby Doo gummies",
+    "type": "Hydration Drink"
+  },
+  {
+    "id": "bloom-cherry-lime",
+    "name": "Bloom Cherry Lime",
+    "ranking": 7,
+    "caffeineMg": 180,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "yerba-mate-guayaki-cranberry-pomegranate",
+    "name": "Yerba Mate Guayaki Cranberry Pomegranate",
+    "ranking": 7,
+    "caffeineMg": 80,
+    "sugarG": 23,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "yerba-mate-guayaki-enlighten-mint",
+    "name": "Yerba Mate Guayaki Enlighten Mint",
+    "ranking": 7,
+    "caffeineMg": 150,
+    "sugarG": 28,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "red-bull-blueberry",
+    "name": "Red Bull Blueberry",
+    "ranking": 7,
+    "caffeineMg": 114,
+    "sugarG": 38,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "red-bull-tropical",
+    "name": "Red Bull Tropical",
+    "ranking": 7,
+    "caffeineMg": 114,
+    "sugarG": 38,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "prime-hydration-treasure-hunt-pink",
+    "name": "PRIME Hydration Treasure Hunt (Pink)",
+    "ranking": 7,
+    "caffeineMg": 0,
+    "sugarG": 2,
+    "type": "Hydration Drink"
+  },
+  {
+    "id": "celsius-kiwi-guava",
+    "name": "Celsius Kiwi Guava",
+    "ranking": 7,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "celsius-galaxy-vibe-strawberry-watermelon",
+    "name": "Celsius Galaxy Vibe (Strawberry Watermelon)",
+    "ranking": 7,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "notes": "not bad",
+    "type": "Energy Drink"
+  },
+  {
+    "id": "alani-nu-orange-kiss",
+    "name": "Alani Nu Orange Kiss",
+    "ranking": 7,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "notes": "boring candy orange flavor",
+    "type": "Energy Drink"
+  },
+  {
+    "id": "alani-nu-hawaiian-shaved-ice",
+    "name": "Alani Nu Hawaiian Shaved Ice",
+    "ranking": 7,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "notes": "tastes like Tiki Rum Mai Tai",
+    "type": "Energy Drink"
+  },
+  {
+    "id": "alo-exposed",
+    "name": "ALO Exposed",
+    "ranking": 7,
+    "caffeineMg": 0,
+    "sugarG": 32,
+    "notes": "aloe vera + honey",
+    "type": "Hydration Drink"
+  },
+  {
+    "id": "celsius-orange",
+    "name": "Celsius Orange",
+    "ranking": 7,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "notes": "looks like orange juice",
+    "type": "Energy Drink"
+  },
+  {
+    "id": "prime-energy-ice-pop",
+    "name": "PRIME Energy Ice Pop",
+    "ranking": 7,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "alani-nu-mimosa",
+    "name": "Alani Nu Mimosa",
+    "ranking": 7,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "notes": "tastes like orange juice",
+    "type": "Energy Drink"
+  },
+  {
+    "id": "prime-hydration-sticks-blue-raspberry",
+    "name": "PRIME Hydration Sticks Blue Raspberry",
+    "ranking": 7,
+    "caffeineMg": 0,
+    "sugarG": 2,
+    "type": "Hydration Drink"
+  },
+  {
+    "id": "juvee-watermelon",
+    "name": "Juvee Watermelon",
+    "ranking": 7,
+    "caffeineMg": 127,
+    "sugarG": 0,
+    "notes": "tastes watery - artificial",
+    "type": "Energy Drink"
+  },
+  {
+    "id": "celsius-green-apple-cherry",
+    "name": "Celsius Green Apple Cherry",
+    "ranking": 7,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "alani-nu-cherry-twist",
+    "name": "Alani Nu Cherry Twist",
+    "ranking": 7,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "notes": "pretty much same as Cherry Slush",
+    "type": "Energy Drink"
+  },
+  {
+    "id": "alani-nu-dream-float",
+    "name": "Alani Nu Dream Float",
+    "ranking": 7,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "notes": "accurate flavor",
+    "type": "Energy Drink"
+  },
+  {
+    "id": "prime-hydration-treasure-hunt-blue",
+    "name": "PRIME Hydration Treasure Hunt (Blue)",
+    "ranking": 7,
+    "caffeineMg": 0,
+    "sugarG": 2,
+    "type": "Hydration Drink"
+  },
+  {
+    "id": "gt-dave-s-kombucha-island-bliss",
+    "name": "GT Dave's Kombucha: Island Bliss",
+    "ranking": 7,
+    "caffeineMg": 12,
+    "sugarG": 14,
+    "notes": "passionfruit aftertaste",
+    "type": "Kombucha"
+  },
+  {
+    "id": "red-bull-wild-berry",
+    "name": "Red Bull Wild Berry",
+    "ranking": 7,
+    "caffeineMg": 114,
+    "sugarG": 38,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "alani-nu-watermelon-wave-2",
+    "name": "Alani Nu Watermelon Wave",
+    "ranking": 7,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "notes": "tastes like Jolly Rancher",
+    "type": "Energy Drink"
+  },
+  {
+    "id": "celsius-spritz-vibe-snowball-frost",
+    "name": "Celsius Spritz Vibe (Snowball Frost)",
+    "ranking": 7,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "zoa-cherry-limeade",
+    "name": "ZOA Cherry Limeade",
+    "ranking": 6.7,
+    "caffeineMg": 160,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "celsius-retro-vibe-sherbet-slush",
+    "name": "Celsius Retro Vibe: Sherbet Slush",
+    "ranking": 6.7,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "zevia-peach-passionfruit",
+    "name": "Zevia Peach Passionfruit",
+    "ranking": 6.7,
+    "caffeineMg": 120,
+    "sugarG": 0,
+    "notes": "tastes healthy, neutral lean",
+    "type": "Energy Drink"
+  },
+  {
+    "id": "red-bull-iced-vanilla-berry",
+    "name": "Red Bull Iced Vanilla Berry",
+    "ranking": 6,
+    "caffeineMg": 114,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "prime-hydration-sticks-lemon-lime",
+    "name": "PRIME Hydration Sticks Lemon Lime",
+    "ranking": 6,
+    "caffeineMg": 0,
+    "sugarG": 2,
+    "type": "Hydration Drink"
+  },
+  {
+    "id": "red-bull-dragonfruit",
+    "name": "Red Bull Dragonfruit",
+    "ranking": 6,
+    "caffeineMg": 114,
+    "sugarG": 38,
+    "notes": "not too sweet",
+    "type": "Energy Drink"
+  },
+  {
+    "id": "prime-energy-strawberry-watermelon",
+    "name": "PRIME Energy Strawberry Watermelon",
+    "ranking": 6,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "notes": "not bad, but disappointing flavor",
+    "type": "Energy Drink"
+  },
+  {
+    "id": "red-bull-juneberry",
+    "name": "Red Bull Juneberry",
+    "ranking": 6,
+    "caffeineMg": 114,
+    "sugarG": 38,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "celsius-lemon-lime",
+    "name": "Celsius Lemon Lime",
+    "ranking": 6,
+    "caffeineMg": 200,
+    "sugarG": 0,
+    "type": "Energy Drink"
+  },
+  {
+    "id": "olipop-root-beer",
+    "name": "OLIPOP Root Beer",
+    "ranking": 6,
+    "caffeineMg": 50,
+    "sugarG": 2,
+    "notes": "weird smell, ok taste, empty feeling after",
+    "type": "Soda"
+  },
+  {
+    "id": "prime-hydration-grape",
+    "name": "PRIME Hydration Grape",
+    "ranking": 5,
+    "caffeineMg": 0,
+    "sugarG": 2,
+    "notes": "tastes like fake grape Tylenol",
+    "type": "Hydration Drink"
+  },
+  {
+    "id": "lit-snow-cone",
+    "name": "LIT Snow Cone",
+    "ranking": 5,
+    "caffeineMg": 250,
+    "sugarG": 0,
+    "notes": "tastes artificial",
+    "type": "Energy Drink"
+  },
+  {
+    "id": "bang-blue-razz-super-creatine",
+    "name": "Bang Blue Razz (Super Creatine)",
+    "ranking": 4,
+    "caffeineMg": 300,
+    "sugarG": 0,
+    "notes": "unremarkable flavor, DO NOT buy again",
+    "type": "Energy Drink"
+  }
+]

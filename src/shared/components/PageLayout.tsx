@@ -1,12 +1,14 @@
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
+import { ThemeToggle } from './ThemeToggle'
 
 interface PageLayoutProps {
   title: string
   children: ReactNode
+  headerRight?: ReactNode
 }
 
-export function PageLayout({ title, children }: PageLayoutProps) {
+export function PageLayout({ title, children, headerRight }: PageLayoutProps) {
   return (
     <div className="min-h-svh bg-neutral-50 dark:bg-neutral-950">
       <header
@@ -22,7 +24,11 @@ export function PageLayout({ title, children }: PageLayoutProps) {
         >
           ←
         </Link>
-        <h1 className="text-lg font-semibold text-neutral-900 dark:text-white">{title}</h1>
+        <h1 className="text-lg font-semibold text-neutral-900 dark:text-white flex-1 truncate">
+          {title}
+        </h1>
+        {headerRight}
+        <ThemeToggle />
       </header>
       <main className="px-4 py-4">{children}</main>
     </div>
