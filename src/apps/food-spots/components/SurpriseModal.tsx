@@ -1,3 +1,6 @@
+import { isMobileDevice } from '../../../shared/lib/device'
+import { mapsUrlFor } from '../lib/maps'
+import { typeColorFor } from '../lib/typeColors'
 import type { FoodSpot } from '../types'
 
 interface SurpriseModalProps {
@@ -7,13 +10,23 @@ interface SurpriseModalProps {
 }
 
 export function SurpriseModal({ spot, onPickAgain, onClose }: SurpriseModalProps) {
+  // On mobile, a same-tab navigation lets iOS/Android hand off to the
+  // Google Maps app via universal links; target="_blank" would suppress that.
+  const mobile = isMobileDevice()
+
   return (
     <div className="fixed inset-0 z-20 flex items-end sm:items-center justify-center bg-black/40 p-4">
       <div className="w-full sm:max-w-sm rounded-2xl bg-white dark:bg-neutral-900 p-5">
         <p className="text-xs font-semibold uppercase tracking-wide text-blue-600 mb-1">
           You should try...
         </p>
-        <h2 className="text-xl font-bold text-neutral-900 dark:text-white">{spot.name}</h2>
+        <a
+          href={mapsUrlFor(spot)}
+          {...(mobile ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
+          className="block hover:underline"
+        >
+          <h2 className="text-xl font-bold text-neutral-900 dark:text-white">{spot.name}</h2>
+        </a>
         <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-1">
           {spot.location.join(' · ')} — {spot.cuisine}
         </p>
@@ -21,8 +34,7 @@ export function SurpriseModal({ spot, onPickAgain, onClose }: SurpriseModalProps
           {spot.type.map((t) => (
             <span
               key={t}
-              className="text-xs px-2 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800
-                text-neutral-600 dark:text-neutral-300"
+              className={`text-xs font-medium px-2 py-0.5 rounded-full ${typeColorFor(t)}`}
             >
               {t}
             </span>

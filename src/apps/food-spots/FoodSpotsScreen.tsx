@@ -15,6 +15,42 @@ function uniqueSorted(values: string[]): string[] {
   return Array.from(new Set(values)).sort((a, b) => a.localeCompare(b))
 }
 
+// Ordered roughly by driving proximity to Milpitas, nearest first.
+const LOCATION_PROXIMITY_TO_MILPITAS = [
+  'Milpitas',
+  'Fremont',
+  'San Jose',
+  'Santa Clara',
+  'Sunnyvale',
+  'Cupertino',
+  'Campbell',
+  'Mountain View',
+  'Los Gatos',
+  'Palo Alto',
+  'Pleasanton',
+  'San Carlos',
+  'Foster City',
+  'San Mateo',
+  'Oakland',
+  'Berkeley',
+  'San Francisco',
+  'Monterey',
+  'Davis',
+  'Sacramento',
+]
+
+function uniqueByProximity(values: string[]): string[] {
+  const unique = Array.from(new Set(values))
+  return unique.sort((a, b) => {
+    const indexA = LOCATION_PROXIMITY_TO_MILPITAS.indexOf(a)
+    const indexB = LOCATION_PROXIMITY_TO_MILPITAS.indexOf(b)
+    if (indexA === -1 && indexB === -1) return a.localeCompare(b)
+    if (indexA === -1) return 1
+    if (indexB === -1) return -1
+    return indexA - indexB
+  })
+}
+
 export function FoodSpotsScreen() {
   const [search, setSearch] = useState('')
   const [status, setStatus] = useState<'All' | Status>('All')
@@ -24,7 +60,7 @@ export function FoodSpotsScreen() {
   const [surpriseSpot, setSurpriseSpot] = useState<FoodSpot | null>(null)
 
   const locationOptions = useMemo(
-    () => uniqueSorted(foodSpots.flatMap((s) => s.location)),
+    () => uniqueByProximity(foodSpots.flatMap((s) => s.location)),
     [],
   )
   const cuisineOptions = useMemo(() => uniqueSorted(foodSpots.map((s) => s.cuisine)), [])

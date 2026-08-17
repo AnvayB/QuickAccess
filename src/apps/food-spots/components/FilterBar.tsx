@@ -1,6 +1,8 @@
-import { ChipGroup } from '../../../shared/components/ChipGroup'
+import { MultiSelectDropdown } from '../../../shared/components/MultiSelectDropdown'
 import { SearchInput } from '../../../shared/components/SearchInput'
 import { SegmentedControl } from '../../../shared/components/SegmentedControl'
+import { cuisineFlagFor } from '../lib/cuisineFlags'
+import { typeColorFor } from '../lib/typeColors'
 import type { Status } from '../types'
 
 interface FilterBarProps {
@@ -55,26 +57,26 @@ export function FilterBar({
         />
       </div>
 
-      <ChipGroup
+      <MultiSelectDropdown
         label="Location"
         options={locationOptions}
         selected={locationSelected}
         onToggle={onToggleLocation}
         colorFor={colorFor}
       />
-      <ChipGroup
+      <MultiSelectDropdown
         label="Cuisine"
         options={cuisineOptions}
         selected={cuisineSelected}
         onToggle={onToggleCuisine}
-        colorFor={colorFor}
+        iconFor={cuisineFlagFor}
       />
-      <ChipGroup
+      <MultiSelectDropdown
         label="Type"
         options={typeOptions}
         selected={typeSelected}
         onToggle={onToggleType}
-        colorFor={colorFor}
+        pillClassFor={typeColorFor}
       />
     </div>
   )

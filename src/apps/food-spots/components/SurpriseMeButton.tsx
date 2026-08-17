@@ -13,7 +13,6 @@ export function SurpriseMeButton({ disabled, onPress }: SurpriseMeButtonProps) {
         px-4 py-2.5 text-sm font-medium min-h-11 shadow-sm
         disabled:opacity-40 disabled:cursor-not-allowed active:scale-[0.98] transition-transform"
     >
-      <span aria-hidden>🎲</span>
       Surprise me
     </button>
   )

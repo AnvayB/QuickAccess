@@ -1,8 +1,20 @@
+import { isMobileDevice } from '../../../shared/lib/device'
+import { mapsUrlFor } from '../lib/maps'
+import { typeColorFor } from '../lib/typeColors'
 import type { FoodSpot } from '../types'
 
 export function SpotCard({ spot }: { spot: FoodSpot }) {
+  // On mobile, a same-tab navigation lets iOS/Android hand off to the
+  // Google Maps app via universal links; target="_blank" would suppress that.
+  const mobile = isMobileDevice()
+
   return (
-    <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-4">
+    <a
+      href={mapsUrlFor(spot)}
+      {...(mobile ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
+      className="block rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-4
+        active:scale-[0.98] transition-transform"
+    >
       <div className="flex items-start justify-between gap-2">
         <h3 className="font-semibold text-neutral-900 dark:text-white">{spot.name}</h3>
         <span
@@ -22,13 +34,12 @@ export function SpotCard({ spot }: { spot: FoodSpot }) {
         {spot.type.map((t) => (
           <span
             key={t}
-            className="text-xs px-2 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800
-              text-neutral-600 dark:text-neutral-300"
+            className={`text-xs font-medium px-2 py-0.5 rounded-full ${typeColorFor(t)}`}
           >
             {t}
           </span>
         ))}
       </div>
-    </div>
+    </a>
   )
 }
