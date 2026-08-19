@@ -135,10 +135,16 @@ export function MorningCalculatorScreen() {
   ]
 
   return (
-    <PageLayout title="Morning Calc" headerRight={<ModeToggle value={mode} onChange={setMode} />}>
+    <PageLayout
+      title="Morning Calc"
+      headerRight={
+        <div className="flex items-center gap-2">
+          <ModeToggle value={mode} onChange={setMode} />
+          <DirectionToggle value={direction} onChange={setDirection} />
+        </div>
+      }
+    >
       <div className="flex flex-col gap-5">
-        <DirectionToggle value={direction} onChange={setDirection} />
-
         {mode === 'wake-up' ? (
           direction === 'target' ? (
             <div>
