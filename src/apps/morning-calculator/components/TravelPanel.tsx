@@ -4,25 +4,29 @@ import { DestinationInput } from './DestinationInput'
 interface TravelPanelProps {
   destination: string
   onDestinationChange: (value: string) => void
-  arrivalTime: string
-  onArrivalTimeChange: (value: string) => void
+  timeLabel: string
+  timeValue: string
+  onTimeChange: (value: string) => void
   mapsReady: boolean
   status: TravelStatus
   error: string | null
   travelText: string | null
-  departureLabel: string | null
+  summaryLabel: string | null
+  summaryValue: string | null
 }
 
 export function TravelPanel({
   destination,
   onDestinationChange,
-  arrivalTime,
-  onArrivalTimeChange,
+  timeLabel,
+  timeValue,
+  onTimeChange,
   mapsReady,
   status,
   error,
   travelText,
-  departureLabel,
+  summaryLabel,
+  summaryValue,
 }: TravelPanelProps) {
   return (
     <div className="flex flex-col gap-4">
@@ -35,12 +39,12 @@ export function TravelPanel({
 
       <div>
         <h3 className="text-xs font-semibold uppercase tracking-wide text-neutral-500 dark:text-neutral-400 mb-2">
-          What time do you need to arrive?
+          {timeLabel}
         </h3>
         <input
           type="time"
-          value={arrivalTime}
-          onChange={(e) => onArrivalTimeChange(e.target.value)}
+          value={timeValue}
+          onChange={(e) => onTimeChange(e.target.value)}
           className="min-h-11 w-full rounded-lg border border-neutral-200 dark:border-neutral-700
             bg-white dark:bg-neutral-900 px-3 text-base text-neutral-900 dark:text-white"
         />
@@ -50,11 +54,11 @@ export function TravelPanel({
         <p className="text-sm text-neutral-500 dark:text-neutral-400">Checking traffic…</p>
       )}
       {status === 'error' && error && <p className="text-sm text-red-500 dark:text-red-400">{error}</p>}
-      {status === 'idle' && travelText && departureLabel && (
+      {status === 'idle' && travelText && summaryLabel && summaryValue && (
         <p className="text-sm text-neutral-500 dark:text-neutral-400">
           Drive time: <span className="font-medium text-neutral-900 dark:text-white">{travelText}</span>
-          {' — '}leave by{' '}
-          <span className="font-medium text-neutral-900 dark:text-white">{departureLabel}</span>
+          {' — '}
+          {summaryLabel} <span className="font-medium text-neutral-900 dark:text-white">{summaryValue}</span>
         </p>
       )}
     </div>

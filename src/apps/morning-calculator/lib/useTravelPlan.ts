@@ -1,15 +1,19 @@
 import { useEffect, useState } from 'react'
 import { getCurrentPosition, type Coordinates } from './geolocation'
 import { loadGoogleMaps } from './googleMaps'
-import { nextOccurrence, parseTimeToMinutes } from './time'
+import { nextOccurrence } from './time'
 import { getTravelDuration } from './travelTime'
 
 export type TravelStatus = 'idle' | 'loading' | 'error'
 
 const DEBOUNCE_MS = 600
 
-export function useTravelPlan(enabled: boolean) {
-  const [arrivalTime, setArrivalTime] = useState('')
+/**
+ * referenceMinutes anchors the traffic lookup: the arrival time when the arrival
+ * time is known, or the (already computed) departure time when working forward
+ * from an alarm time.
+ */
+export function useTravelPlan(enabled: boolean, referenceMinutes: number | null) {
   const [destination, setDestination] = useState('')
   const [origin, setOrigin] = useState<Coordinates | null>(null)
   const [mapsReady, setMapsReady] = useState(false)
@@ -50,13 +54,7 @@ export function useTravelPlan(enabled: boolean) {
   }, [enabled])
 
   useEffect(() => {
-    if (!enabled || !mapsReady || !origin || !destination.trim()) {
-      setTravelMinutes(null)
-      setTravelText(null)
-      return
-    }
-    const arrivalMinutes = parseTimeToMinutes(arrivalTime)
-    if (arrivalMinutes === null) {
+    if (!enabled || !mapsReady || !origin || !destination.trim() || referenceMinutes === null) {
       setTravelMinutes(null)
       setTravelText(null)
       return
@@ -65,7 +63,7 @@ export function useTravelPlan(enabled: boolean) {
     const timer = setTimeout(() => {
       setStatus('loading')
       setError(null)
-      getTravelDuration(origin, destination, nextOccurrence(arrivalMinutes))
+      getTravelDuration(origin, destination, nextOccurrence(referenceMinutes))
         .then((result) => {
           setTravelMinutes(result.minutes)
           setTravelText(result.text)
@@ -80,11 +78,9 @@ export function useTravelPlan(enabled: boolean) {
     }, DEBOUNCE_MS)
 
     return () => clearTimeout(timer)
-  }, [enabled, mapsReady, origin, destination, arrivalTime])
+  }, [enabled, mapsReady, origin, destination, referenceMinutes])
 
   return {
-    arrivalTime,
-    setArrivalTime,
     destination,
     setDestination,
     mapsReady,

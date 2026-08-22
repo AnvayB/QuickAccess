@@ -19,6 +19,9 @@ interface FilterBarProps {
   onToggleLocation: (value: string) => void
   onToggleCuisine: (value: string) => void
   onToggleType: (value: string) => void
+  onClearLocation: () => void
+  onClearCuisine: () => void
+  onClearType: () => void
   colorFor: (value: string) => string
 }
 
@@ -36,6 +39,9 @@ export function FilterBar({
   onToggleLocation,
   onToggleCuisine,
   onToggleType,
+  onClearLocation,
+  onClearCuisine,
+  onClearType,
   colorFor,
 }: FilterBarProps) {
   return (
@@ -62,6 +68,7 @@ export function FilterBar({
         options={locationOptions}
         selected={locationSelected}
         onToggle={onToggleLocation}
+        onClear={onClearLocation}
         colorFor={colorFor}
       />
       <MultiSelectDropdown
@@ -69,6 +76,7 @@ export function FilterBar({
         options={cuisineOptions}
         selected={cuisineSelected}
         onToggle={onToggleCuisine}
+        onClear={onClearCuisine}
         iconFor={cuisineFlagFor}
       />
       <MultiSelectDropdown
@@ -76,6 +84,7 @@ export function FilterBar({
         options={typeOptions}
         selected={typeSelected}
         onToggle={onToggleType}
+        onClear={onClearType}
         pillClassFor={typeColorFor}
       />
     </div>

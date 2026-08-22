@@ -12,6 +12,10 @@ export function subtractMinutes(minutesSinceMidnight: number, minutesToSubtract:
   return ((minutesSinceMidnight - minutesToSubtract) % MINUTES_PER_DAY + MINUTES_PER_DAY) % MINUTES_PER_DAY
 }
 
+export function addMinutes(minutesSinceMidnight: number, minutesToAdd: number): number {
+  return ((minutesSinceMidnight + minutesToAdd) % MINUTES_PER_DAY + MINUTES_PER_DAY) % MINUTES_PER_DAY
+}
+
 export function formatMinutesAsClock(minutesSinceMidnight: number): string {
   const wrapped = ((minutesSinceMidnight % MINUTES_PER_DAY) + MINUTES_PER_DAY) % MINUTES_PER_DAY
   const hours24 = Math.floor(wrapped / 60)
