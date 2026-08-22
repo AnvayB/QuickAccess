@@ -5,9 +5,11 @@ interface MultiSelectDropdownProps {
   options: string[]
   selected: Set<string>
   onToggle: (value: string) => void
+  onClear?: () => void
   colorFor?: (value: string) => string
   iconFor?: (value: string) => string | undefined
   pillClassFor?: (value: string) => string
+  allowCustom?: boolean
 }
 
 export function MultiSelectDropdown({
@@ -15,11 +17,15 @@ export function MultiSelectDropdown({
   options,
   selected,
   onToggle,
+  onClear,
   colorFor,
   iconFor,
   pillClassFor,
+  allowCustom,
 }: MultiSelectDropdownProps) {
   const [open, setOpen] = useState(false)
+  const [customOptions, setCustomOptions] = useState<string[]>([])
+  const [customValue, setCustomValue] = useState('')
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -43,9 +49,20 @@ export function MultiSelectDropdown({
     }
   }, [open])
 
-  if (options.length === 0) return null
+  if (options.length === 0 && !allowCustom) return null
 
-  const selectedOptions = options.filter((option) => selected.has(option))
+  const allOptions = customOptions.length > 0 ? [...options, ...customOptions] : options
+  const selectedOptions = allOptions.filter((option) => selected.has(option))
+
+  function addCustomValue() {
+    const value = customValue.trim()
+    if (!value) return
+    if (!allOptions.some((option) => option.toLowerCase() === value.toLowerCase())) {
+      setCustomOptions((prev) => [...prev, value])
+    }
+    onToggle(value)
+    setCustomValue('')
+  }
 
   function renderRowLabel(option: string) {
     const color = colorFor?.(option)
@@ -112,9 +129,24 @@ export function MultiSelectDropdown({
 
   return (
     <div ref={containerRef} className="relative">
-      <h3 className="text-xs font-semibold uppercase tracking-wide text-neutral-500 dark:text-neutral-400 mb-2">
-        {label}
-      </h3>
+      <div className="flex items-center justify-between mb-2">
+        <h3 className="text-xs font-semibold uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
+          {label}
+        </h3>
+        {onClear && selectedOptions.length > 0 && (
+          <button
+            type="button"
+            onClick={(event) => {
+              event.stopPropagation()
+              onClear()
+            }}
+            className="text-xs font-medium text-neutral-500 hover:text-neutral-700 dark:text-neutral-400
+              dark:hover:text-neutral-200 transition-colors"
+          >
+            Clear all
+          </button>
+        )}
+      </div>
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
@@ -142,7 +174,7 @@ export function MultiSelectDropdown({
           className="absolute z-10 mt-2 w-full min-w-64 max-h-72 overflow-y-auto rounded-lg border
             border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 p-2 shadow-lg"
         >
-          {options.map((option) => {
+          {allOptions.map((option) => {
             const isSelected = selected.has(option)
             const color = colorFor?.(option)
             return (
@@ -155,13 +187,45 @@ export function MultiSelectDropdown({
                   type="checkbox"
                   checked={isSelected}
                   onChange={() => onToggle(option)}
-                  className="h-4 w-4 rounded accent-current"
+                  className="h-4 w-4 rounded border border-neutral-300 dark:border-neutral-600 accent-current"
                   style={color ? { accentColor: color } : undefined}
                 />
                 {renderRowLabel(option)}
               </label>
             )
           })}
+
+          {allowCustom && (
+            <div
+              className="flex items-center gap-1.5 pt-1.5 mt-1.5 border-t border-neutral-200 dark:border-neutral-800"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <input
+                value={customValue}
+                onChange={(e) => setCustomValue(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault()
+                    addCustomValue()
+                  }
+                }}
+                placeholder="Add new…"
+                className="flex-1 min-w-0 rounded-md border border-neutral-300 dark:border-neutral-700
+                  bg-white dark:bg-neutral-900 px-2 py-1.5 text-sm text-neutral-900 dark:text-white
+                  placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <button
+                type="button"
+                onClick={addCustomValue}
+                disabled={!customValue.trim()}
+                className="shrink-0 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-700
+                  dark:text-neutral-200 px-2.5 py-1.5 text-sm font-medium disabled:opacity-40
+                  disabled:cursor-not-allowed"
+              >
+                Add
+              </button>
+            </div>
+          )}
         </div>
       )}
     </div>

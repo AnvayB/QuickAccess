@@ -3,6 +3,7 @@ import { PageLayout } from '../../shared/components/PageLayout'
 import { SurpriseMeButton } from '../../shared/components/SurpriseMeButton'
 import { useMultiSelectFilter } from '../../shared/hooks/useMultiSelectFilter'
 import { colorForValue } from '../../shared/lib/colorAssignment'
+import { AddFoodSpotModal } from './components/AddFoodSpotModal'
 import { FilterBar } from './components/FilterBar'
 import { ResultsList } from './components/ResultsList'
 import { SurpriseModal } from './components/SurpriseModal'
@@ -58,6 +59,7 @@ export function FoodSpotsScreen() {
   const cuisineFilter = useMultiSelectFilter()
   const typeFilter = useMultiSelectFilter()
   const [surpriseSpot, setSurpriseSpot] = useState<FoodSpot | null>(null)
+  const [showAddModal, setShowAddModal] = useState(false)
 
   const locationOptions = useMemo(
     () => uniqueByProximity(foodSpots.flatMap((s) => s.location)),
@@ -107,6 +109,9 @@ export function FoodSpotsScreen() {
           onToggleLocation={locationFilter.toggle}
           onToggleCuisine={cuisineFilter.toggle}
           onToggleType={typeFilter.toggle}
+          onClearLocation={locationFilter.clear}
+          onClearCuisine={cuisineFilter.clear}
+          onClearType={typeFilter.clear}
           colorFor={colorForValue}
         />
 
@@ -114,7 +119,18 @@ export function FoodSpotsScreen() {
           <p className="text-sm text-neutral-500 dark:text-neutral-400">
             {filtered.length} of {foodSpots.length} spots
           </p>
-          <SurpriseMeButton disabled={filtered.length === 0} onPress={pickSurprise} />
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setShowAddModal(true)}
+              className="inline-flex items-center gap-1.5 rounded-full bg-neutral-100 dark:bg-neutral-800
+                text-neutral-700 dark:text-neutral-200 px-4 py-2.5 text-sm font-medium min-h-11
+                active:scale-[0.98] transition-transform"
+            >
+              + Add
+            </button>
+            <SurpriseMeButton disabled={filtered.length === 0} onPress={pickSurprise} />
+          </div>
         </div>
 
         <ResultsList spots={filtered} />
@@ -125,6 +141,15 @@ export function FoodSpotsScreen() {
           spot={surpriseSpot}
           onPickAgain={pickSurprise}
           onClose={() => setSurpriseSpot(null)}
+        />
+      )}
+
+      {showAddModal && (
+        <AddFoodSpotModal
+          onClose={() => setShowAddModal(false)}
+          locationOptions={locationOptions}
+          cuisineOptions={cuisineOptions}
+          typeOptions={typeOptions}
         />
       )}
     </PageLayout>

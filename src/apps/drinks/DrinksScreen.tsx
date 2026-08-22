@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { PageLayout } from '../../shared/components/PageLayout'
 import { SurpriseMeButton } from '../../shared/components/SurpriseMeButton'
 import { useMultiSelectFilter } from '../../shared/hooks/useMultiSelectFilter'
+import { AddDrinkModal } from './components/AddDrinkModal'
 import { FilterBar } from './components/FilterBar'
 import { ResultsList } from './components/ResultsList'
 import { SurpriseModal } from './components/SurpriseModal'
@@ -25,6 +26,7 @@ export function DrinksScreen() {
   const [sort, setSort] = useState<SortOption>('ranking')
   const typeFilter = useMultiSelectFilter()
   const [surpriseDrink, setSurpriseDrink] = useState<Drink | null>(null)
+  const [showAddModal, setShowAddModal] = useState(false)
 
   const typeOptions = useMemo(() => uniqueSorted(drinks.map((d) => d.type)), [])
 
@@ -66,7 +68,18 @@ export function DrinksScreen() {
           <p className="text-sm text-neutral-500 dark:text-neutral-400">
             {filtered.length} of {drinks.length} drinks
           </p>
-          <SurpriseMeButton disabled={surpriseCandidates.length === 0} onPress={pickSurprise} />
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setShowAddModal(true)}
+              className="inline-flex items-center gap-1.5 rounded-full bg-neutral-100 dark:bg-neutral-800
+                text-neutral-700 dark:text-neutral-200 px-4 py-2.5 text-sm font-medium min-h-11
+                active:scale-[0.98] transition-transform"
+            >
+              + Add
+            </button>
+            <SurpriseMeButton disabled={surpriseCandidates.length === 0} onPress={pickSurprise} />
+          </div>
         </div>
 
         <ResultsList drinks={filtered} />
@@ -78,6 +91,10 @@ export function DrinksScreen() {
           onPickAgain={pickSurprise}
           onClose={() => setSurpriseDrink(null)}
         />
+      )}
+
+      {showAddModal && (
+        <AddDrinkModal onClose={() => setShowAddModal(false)} typeOptions={typeOptions} />
       )}
     </PageLayout>
   )
