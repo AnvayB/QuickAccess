@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
-import { appendCsvRow, checkSecret, commitFile, getFile, toCsvRow } from './_lib/github'
+import { appendCsvRow, checkSecret, commitFile, getFile, toCsvRow } from './_lib/github.js'
 
 const CSV_PATH = 'data-source/drinks.csv'
 
