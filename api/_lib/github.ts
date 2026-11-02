@@ -1,4 +1,5 @@
 import type { VercelRequest } from '@vercel/node'
+import { parse } from 'csv-parse/sync'
 
 const GITHUB_OWNER = 'AnvayB'
 const GITHUB_REPO = 'QuickAccess'
@@ -77,4 +78,33 @@ export function toCsvRow(fields: string[]): string {
 export function appendCsvRow(csvText: string, row: string): string {
   const normalized = csvText.endsWith('\n') ? csvText : `${csvText}\n`
   return `${normalized}${row}\n`
+}
+
+/**
+ * Replaces the data row whose first column (Name) equals `originalName`.
+ * `occurrence` (0-based) disambiguates rows that share a name. Throws if no row matches.
+ */
+export function replaceCsvRow(
+  csvText: string,
+  originalName: string,
+  occurrence: number,
+  newFields: string[],
+): string {
+  const rows = parse(csvText, { skip_empty_lines: true }) as string[][]
+  let seen = 0
+  let targetIndex = -1
+  for (let i = 1; i < rows.length; i++) {
+    if (rows[i][0]?.trim() === originalName) {
+      if (seen === occurrence) {
+        targetIndex = i
+        break
+      }
+      seen++
+    }
+  }
+  if (targetIndex === -1) {
+    throw new Error(`Could not find "${originalName}" in the data file`)
+  }
+  rows[targetIndex] = newFields
+  return rows.map(toCsvRow).join('\n') + '\n'
 }

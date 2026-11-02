@@ -3,7 +3,7 @@ import { mapsUrlFor } from '../lib/maps'
 import { typeColorFor } from '../lib/typeColors'
 import type { FoodSpot } from '../types'
 
-export function SpotCard({ spot }: { spot: FoodSpot }) {
+export function SpotCard({ spot, onEdit }: { spot: FoodSpot; onEdit: () => void }) {
   // On mobile, a same-tab navigation lets iOS/Android hand off to the
   // Google Maps app via universal links; target="_blank" would suppress that.
   const mobile = isMobileDevice()
@@ -17,8 +17,9 @@ export function SpotCard({ spot }: { spot: FoodSpot }) {
     >
       <div className="flex items-start justify-between gap-2">
         <h3 className="font-semibold text-neutral-900 dark:text-white">{spot.name}</h3>
+        <div className="shrink-0 flex items-center gap-1">
         <span
-          className={`shrink-0 text-xs font-medium px-2 py-0.5 rounded-full ${
+          className={`text-xs font-medium px-2 py-0.5 rounded-full ${
             spot.status === 'Visited'
               ? 'bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300'
               : 'bg-neutral-100 text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400'
@@ -26,6 +27,20 @@ export function SpotCard({ spot }: { spot: FoodSpot }) {
         >
           {spot.status}
         </span>
+        <button
+            type="button"
+            aria-label="Edit {spot.name}"
+            onClick={(event) => {
+              event.preventDefault()
+              event.stopPropagation()
+              onEdit()
+            }}
+            className="shrink-0 -m-2 p-2 min-w-11 min-h-11 inline-flex items-center justify-center
+              text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200"
+          >
+            ✎
+          </button>
+        </div>
       </div>
       <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-1">
         {spot.location.join(' · ')} — {spot.cuisine}

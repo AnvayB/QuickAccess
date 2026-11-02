@@ -1,17 +1,28 @@
 import { rankingColorFor, typeColorFor } from '../lib/typeColors'
 import type { Drink } from '../types'
 
-export function DrinkCard({ drink }: { drink: Drink }) {
+export function DrinkCard({ drink, onEdit }: { drink: Drink; onEdit: () => void }) {
   return (
     <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-4">
       <div className="flex items-start justify-between gap-2">
         <h3 className="font-semibold text-neutral-900 dark:text-white">{drink.name}</h3>
+        <div className="shrink-0 flex items-center gap-1">
         <span
-          className={`shrink-0 inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5
+          className={`inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5
             rounded-full ${rankingColorFor(drink.ranking)}`}
         >
           ★ {drink.ranking}
         </span>
+        <button
+            type="button"
+            aria-label="Edit {drink.name}"
+            onClick={onEdit}
+            className="shrink-0 -m-2 p-2 min-w-11 min-h-11 inline-flex items-center justify-center
+              text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200"
+          >
+            ✎
+          </button>
+        </div>
       </div>
       <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-1">
         {drink.caffeineMg} mg caffeine · {drink.sugarG} g sugar

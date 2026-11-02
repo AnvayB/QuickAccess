@@ -27,6 +27,12 @@ export function DrinksScreen() {
   const typeFilter = useMultiSelectFilter()
   const [surpriseDrink, setSurpriseDrink] = useState<Drink | null>(null)
   const [showAddModal, setShowAddModal] = useState(false)
+  const [editing, setEditing] = useState<{ drink: Drink; occurrence: number } | null>(null)
+
+  const startEdit = (drink: Drink) => {
+    const occurrence = drinks.slice(0, drinks.indexOf(drink)).filter((d) => d.name === drink.name).length
+    setEditing({ drink, occurrence })
+  }
 
   const typeOptions = useMemo(() => uniqueSorted(drinks.map((d) => d.type)), [])
 
@@ -82,7 +88,7 @@ export function DrinksScreen() {
           </div>
         </div>
 
-        <ResultsList drinks={filtered} />
+        <ResultsList drinks={filtered} onEdit={startEdit} />
       </div>
 
       {surpriseDrink && (
@@ -95,6 +101,15 @@ export function DrinksScreen() {
 
       {showAddModal && (
         <AddDrinkModal onClose={() => setShowAddModal(false)} typeOptions={typeOptions} />
+      )}
+
+      {editing && (
+        <AddDrinkModal
+          key={editing.drink.id}
+          onClose={() => setEditing(null)}
+          typeOptions={typeOptions}
+          editing={editing}
+        />
       )}
     </PageLayout>
   )

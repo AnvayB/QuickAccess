@@ -60,6 +60,12 @@ export function FoodSpotsScreen() {
   const typeFilter = useMultiSelectFilter()
   const [surpriseSpot, setSurpriseSpot] = useState<FoodSpot | null>(null)
   const [showAddModal, setShowAddModal] = useState(false)
+  const [editing, setEditing] = useState<{ spot: FoodSpot; occurrence: number } | null>(null)
+
+  const startEdit = (spot: FoodSpot) => {
+    const occurrence = foodSpots.slice(0, foodSpots.indexOf(spot)).filter((s) => s.name === spot.name).length
+    setEditing({ spot, occurrence })
+  }
 
   const locationOptions = useMemo(
     () => uniqueByProximity(foodSpots.flatMap((s) => s.location)),
@@ -133,7 +139,7 @@ export function FoodSpotsScreen() {
           </div>
         </div>
 
-        <ResultsList spots={filtered} />
+        <ResultsList spots={filtered} onEdit={startEdit} />
       </div>
 
       {surpriseSpot && (
@@ -150,6 +156,17 @@ export function FoodSpotsScreen() {
           locationOptions={locationOptions}
           cuisineOptions={cuisineOptions}
           typeOptions={typeOptions}
+        />
+      )}
+
+      {editing && (
+        <AddFoodSpotModal
+          key={editing.spot.id}
+          onClose={() => setEditing(null)}
+          locationOptions={locationOptions}
+          cuisineOptions={cuisineOptions}
+          typeOptions={typeOptions}
+          editing={editing}
         />
       )}
     </PageLayout>

@@ -1,7 +1,7 @@
 import type { FoodSpot } from '../types'
 import { SpotCard } from './SpotCard'
 
-export function ResultsList({ spots }: { spots: FoodSpot[] }) {
+export function ResultsList({ spots, onEdit }: { spots: FoodSpot[]; onEdit: (spot: FoodSpot) => void }) {
   if (spots.length === 0) {
     return (
       <div className="text-center py-12 text-neutral-500 dark:text-neutral-400">
@@ -13,7 +13,7 @@ export function ResultsList({ spots }: { spots: FoodSpot[] }) {
   return (
     <div className="flex flex-col gap-3">
       {spots.map((spot) => (
-        <SpotCard key={spot.id} spot={spot} />
+        <SpotCard key={spot.id} spot={spot} onEdit={() => onEdit(spot)} />
       ))}
     </div>
   )

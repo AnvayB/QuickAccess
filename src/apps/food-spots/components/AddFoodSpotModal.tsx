@@ -5,7 +5,7 @@ import { SegmentedControl } from '../../../shared/components/SegmentedControl'
 import { colorForValue } from '../../../shared/lib/colorAssignment'
 import { cuisineFlagFor } from '../lib/cuisineFlags'
 import { typeColorFor } from '../lib/typeColors'
-import type { Status } from '../types'
+import type { FoodSpot, Status } from '../types'
 
 const PASSCODE_STORAGE_KEY = 'quickaccess:add-passcode'
 
@@ -14,6 +14,8 @@ interface AddFoodSpotModalProps {
   locationOptions: string[]
   cuisineOptions: string[]
   typeOptions: string[]
+  /** When set, the modal edits this spot instead of adding a new one. */
+  editing?: { spot: FoodSpot; occurrence: number }
 }
 
 function fieldClass() {
@@ -28,12 +30,14 @@ export function AddFoodSpotModal({
   locationOptions,
   cuisineOptions,
   typeOptions,
+  editing,
 }: AddFoodSpotModalProps) {
-  const [name, setName] = useState('')
-  const [location, setLocation] = useState<Set<string>>(new Set())
-  const [cuisine, setCuisine] = useState<Set<string>>(new Set())
-  const [type, setType] = useState<Set<string>>(new Set())
-  const [status, setStatus] = useState<Status>('Not Visited')
+  const initial = editing?.spot
+  const [name, setName] = useState(initial?.name ?? '')
+  const [location, setLocation] = useState<Set<string>>(new Set(initial?.location))
+  const [cuisine, setCuisine] = useState<Set<string>>(new Set(initial ? [initial.cuisine] : []))
+  const [type, setType] = useState<Set<string>>(new Set(initial?.type))
+  const [status, setStatus] = useState<Status>(initial?.status ?? 'Not Visited')
   const [passcode, setPasscode] = useState(
     () => localStorage.getItem(PASSCODE_STORAGE_KEY) ?? '',
   )
@@ -74,10 +78,14 @@ export function AddFoodSpotModal({
     setError(null)
 
     try {
-      const res = await fetch('/api/add-food-spot', {
+      const res = await fetch(editing ? '/api/edit-food-spot' : '/api/add-food-spot', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-add-secret': passcode.trim() },
         body: JSON.stringify({
+          ...(editing && {
+            originalName: editing.spot.name,
+            occurrence: editing.occurrence,
+          }),
           name: name.trim(),
           location: Array.from(location),
           cuisine: Array.from(cuisine)[0] ?? '',
@@ -103,9 +111,11 @@ export function AddFoodSpotModal({
   if (success) {
     return (
       <Modal onClose={onClose}>
-        <h2 className="text-xl font-bold text-neutral-900 dark:text-white">Added!</h2>
+        <h2 className="text-xl font-bold text-neutral-900 dark:text-white">
+          {editing ? 'Saved!' : 'Added!'}
+        </h2>
         <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-1">
-          {name} was committed. It'll show up here after the next deploy finishes, usually
+          {name} was {editing ? 'updated' : 'committed'}. It'll show up here after the next deploy finishes, usually
           within a minute or two.
         </p>
         <button
@@ -121,7 +131,9 @@ export function AddFoodSpotModal({
 
   return (
     <Modal onClose={onClose}>
-      <h2 className="text-xl font-bold text-neutral-900 dark:text-white mb-4">Add a food spot</h2>
+      <h2 className="text-xl font-bold text-neutral-900 dark:text-white mb-4">
+        {editing ? 'Edit food spot' : 'Add a food spot'}
+      </h2>
       <form onSubmit={handleSubmit} className="flex flex-col gap-3">
         <input
           value={name}
@@ -178,7 +190,7 @@ export function AddFoodSpotModal({
             className="flex-1 rounded-lg bg-blue-600 text-white py-2.5 text-sm font-medium min-h-11
               disabled:opacity-40 disabled:cursor-not-allowed"
           >
-            {submitting ? 'Adding…' : 'Add'}
+            {submitting ? 'Saving…' : editing ? 'Save' : 'Add'}
           </button>
           <button
             type="button"
