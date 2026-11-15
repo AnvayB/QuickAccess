@@ -10,7 +10,9 @@
     "preview": "vite preview",
     "data:build:food-spots": "node scripts/csv-to-json.mjs",
     "data:build:drinks": "node scripts/drinks-csv-to-json.mjs",
-    "data:build": "npm run data:build:food-spots && npm run data:build:drinks"
+    "data:build": "npm run data:build:food-spots && npm run data:build:drinks",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
@@ -22,14 +24,20 @@
     "vite-plugin-pwa": "^1.3.0"
   },
   "devDependencies": {
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.10",
     "@types/google.maps": "^3.65.5",
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@vercel/node": "^5.10.1",
     "@vitejs/plugin-react": "^6.0.4",
+    "jsdom": "^31.0.1",
     "oxlint": "^1.75.0",
     "typescript": "~6.0.2",
-    "vite": "^8.2.0"
+    "vite": "^8.2.0",
+    "vitest": "^5.1.0"
   }
 }

@@ -70,7 +70,7 @@ export function BufferSelector({
             value={customMinutes}
             onChange={(e) => onCustomMinutesChange(Math.max(0, Number(e.target.value) || 0))}
             className="min-h-9 w-24 rounded-lg border border-neutral-200 dark:border-neutral-700
-              bg-white dark:bg-neutral-900 px-3 text-sm text-neutral-900 dark:text-white"
+              bg-white dark:bg-neutral-900 px-3 text-base sm:text-sm text-neutral-900 dark:text-white"
           />
           <span className="text-sm text-neutral-500 dark:text-neutral-400">minutes</span>
         </div>

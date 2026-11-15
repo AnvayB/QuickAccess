@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useId, useMemo, useState } from 'react'
 import { PageLayout } from '../../shared/components/PageLayout'
 import { useMultiSelectFilter } from '../../shared/hooks/useMultiSelectFilter'
 import { ActivityChecklist } from './components/ActivityChecklist'
@@ -6,29 +6,53 @@ import { BufferSelector } from './components/BufferSelector'
 import { CustomActivityForm } from './components/CustomActivityForm'
 import { DirectionToggle } from './components/DirectionToggle'
 import { ModeToggle } from './components/ModeToggle'
-import { ResultCard, type ResultRow } from './components/ResultCard'
+import { ResultCard, type ResultFigure, type ResultRow } from './components/ResultCard'
+import { SummaryBar } from './components/SummaryBar'
 import { TravelPanel } from './components/TravelPanel'
 import { activityLibrary } from './data/activities'
+import { loadPreferences, savePreferences } from './lib/preferences'
 import { addMinutes, formatMinutesAsClock, parseTimeToMinutes, subtractMinutes } from './lib/time'
+import { useInView } from './lib/useInView'
+import { useSavedLocations } from './lib/useSavedLocations'
 import { useTravelPlan } from './lib/useTravelPlan'
 import type { Activity, BufferSelection, Direction, Mode } from './types'
 
-let customIdCounter = 0
+const FIELD =
+  'min-h-11 w-full rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 text-base text-neutral-900 dark:text-white'
+const SECTION_HEADING =
+  'text-xs font-semibold uppercase tracking-wide text-neutral-500 dark:text-neutral-400 mb-2'
+
+function newCustomId(): string {
+  return `custom-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`
+}
 
 export function MorningCalculatorScreen() {
-  const [mode, setMode] = useState<Mode>('wake-up')
-  const [direction, setDirection] = useState<Direction>('target')
+  const [initialPrefs] = useState(loadPreferences)
+  const timeFieldId = useId()
+
+  // Travel is the primary mode; the routine settings below are remembered between visits.
+  const [mode, setMode] = useState<Mode>('travel')
+  const [direction, setDirection] = useState<Direction>(initialPrefs.direction ?? 'target')
   const [targetTime, setTargetTime] = useState('') // departure (wake-up) or arrival (travel)
   const [alarmTime, setAlarmTime] = useState('')
-  const [customActivities, setCustomActivities] = useState<Activity[]>([])
-  const [bufferSelection, setBufferSelection] = useState<BufferSelection>(15)
-  const [customBufferMinutes, setCustomBufferMinutes] = useState(15)
-  const activitySelection = useMultiSelectFilter()
+  const [customActivities, setCustomActivities] = useState<Activity[]>(initialPrefs.customActivities ?? [])
+  const [bufferSelection, setBufferSelection] = useState<BufferSelection>(initialPrefs.bufferSelection ?? 15)
+  const [customBufferMinutes, setCustomBufferMinutes] = useState(initialPrefs.customBufferMinutes ?? 15)
+  const activitySelection = useMultiSelectFilter(initialPrefs.selectedIds)
+  // Start the routine section open only when there's nothing remembered to review.
+  const [routineStartsOpen] = useState(() => (initialPrefs.selectedIds ?? []).length === 0)
 
-  const allActivities = useMemo(
-    () => [...activityLibrary, ...customActivities],
-    [customActivities],
-  )
+  useEffect(() => {
+    savePreferences({
+      selectedIds: [...activitySelection.selected],
+      customActivities,
+      bufferSelection,
+      customBufferMinutes,
+      direction,
+    })
+  }, [activitySelection.selected, customActivities, bufferSelection, customBufferMinutes, direction])
+
+  const allActivities = useMemo(() => [...activityLibrary, ...customActivities], [customActivities])
 
   const selectedActivities = useMemo(
     () => allActivities.filter((a) => activitySelection.isSelected(a.id)),
@@ -53,12 +77,19 @@ export function MorningCalculatorScreen() {
       ? null
       : addMinutes(startGettingReadyForward, totalActivityMinutes)
 
-  // In travel mode the traffic lookup needs a single anchor time: the known
-  // arrival time when working backward, or the computed departure time when
+  // In travel mode the traffic lookup needs a single anchor time: the required
+  // arrival time when working backward (the hook then solves for the departure
+  // time that traffic actually applies to), or the computed departure time when
   // working forward from an alarm.
-  const travelReferenceMinutes =
+  const travelAnchorMinutes =
     mode === 'travel' ? (direction === 'alarm' ? departureForward : targetInputMinutes) : null
-  const travel = useTravelPlan(mode === 'travel', travelReferenceMinutes)
+  const savedLocations = useSavedLocations()
+  const travel = useTravelPlan(
+    mode === 'travel',
+    travelAnchorMinutes,
+    direction === 'alarm' ? 'depart-at' : 'arrive-by',
+    savedLocations.locations,
+  )
 
   // Backward: leave/arrive -> start getting ready -> alarm.
   const travelDepartureMinutes =
@@ -93,7 +124,7 @@ export function MorningCalculatorScreen() {
       : null
 
   const addCustomActivity = (label: string, minutes: number) => {
-    const id = `custom-${customIdCounter++}`
+    const id = newCustomId()
     const activity: Activity = { id, label, minutes, category: 'Other', isCustom: true }
     setCustomActivities((prev) => [...prev, activity])
     activitySelection.toggle(id)
@@ -104,122 +135,188 @@ export function MorningCalculatorScreen() {
     if (activitySelection.isSelected(id)) activitySelection.toggle(id)
   }
 
-  const departureLabel = departureMinutes === null ? '—' : formatMinutesAsClock(departureMinutes)
-  const arrivalLabel = arrivalMinutes === null ? '—' : formatMinutesAsClock(arrivalMinutes)
-  const alarmLabel = alarmMinutes === null ? '—' : formatMinutesAsClock(alarmMinutes)
-  const startGettingReadyLabel =
-    startGettingReadyMinutes === null ? '—' : formatMinutesAsClock(startGettingReadyMinutes)
+  const clock = (minutes: number | null) => (minutes === null ? '—' : formatMinutesAsClock(minutes))
+  const departureLabel = clock(departureMinutes)
+  const arrivalLabel = clock(arrivalMinutes)
+  const alarmLabel = clock(alarmMinutes)
+  const startGettingReadyLabel = clock(startGettingReadyMinutes)
 
-  const isReady = direction === 'alarm' ? alarmInputMinutes !== null : targetInputMinutes !== null
-  const emptyMessage =
-    direction === 'alarm'
-      ? 'Set your alarm time to see when you need to leave.'
-      : mode === 'travel'
-        ? 'Set an arrival time to see your alarm time.'
-        : 'Set a departure time to see your alarm time.'
+  const inputsReady = direction === 'alarm' ? alarmInputMinutes !== null : targetInputMinutes !== null
+  // Travel results need a drive time too, otherwise the times would be placeholders.
+  const isReady = inputsReady && (mode === 'wake-up' || travel.travelMinutes !== null)
 
-  const headlineLabel =
-    direction === 'alarm' ? (mode === 'travel' ? "You'll arrive at" : "You'll need to leave at") : 'Set your alarm for'
-  const headlineValue = direction === 'alarm' ? (mode === 'travel' ? arrivalLabel : departureLabel) : alarmLabel
+  let emptyMessage: string
+  if (mode === 'travel' && !travel.destination.trim()) {
+    emptyMessage = 'Choose a destination to see your times.'
+  } else if (!inputsReady) {
+    emptyMessage =
+      direction === 'alarm'
+        ? 'Set your alarm time to see when you need to leave.'
+        : mode === 'travel'
+          ? 'Set an arrival time to see your alarm and departure.'
+          : 'Set a departure time to see your alarm time.'
+  } else if (travel.status === 'error') {
+    emptyMessage = "Couldn't get a drive time — see the message above."
+  } else {
+    emptyMessage = 'Checking traffic…'
+  }
 
-  const rows: ResultRow[] = [
-    ...(direction === 'alarm' ? [{ label: 'Alarm', value: alarmLabel }] : []),
-    ...(mode === 'travel' && direction === 'target' ? [{ label: 'You need to arrive', value: arrivalLabel }] : []),
-    ...(mode === 'travel' && direction === 'alarm' ? [{ label: 'You need to leave', value: departureLabel }] : []),
-    ...(mode === 'wake-up' && direction === 'target'
-      ? [{ label: 'You need to leave', value: departureLabel }]
-      : []),
-    { label: 'Morning routine', value: `${totalActivityMinutes} min` },
-    { label: 'Wake-up buffer', value: `${bufferMinutes} min` },
-    { label: 'Start getting ready', value: startGettingReadyLabel },
-  ]
+  const driveTimeRow: ResultRow[] = travel.travelText
+    ? [
+        {
+          label: 'Drive time',
+          value:
+            travel.trafficDelayMinutes !== null && travel.trafficDelayMinutes >= 2
+              ? `${travel.travelText} (+${travel.trafficDelayMinutes} traffic)`
+              : travel.travelText,
+        },
+      ]
+    : []
+
+  let headline: ResultFigure
+  let secondary: ResultFigure | undefined
+  let rows: ResultRow[]
+
+  if (mode === 'travel') {
+    if (direction === 'target') {
+      headline = { label: 'Wake up at', value: alarmLabel }
+      secondary = { label: 'Leave by', value: departureLabel }
+    } else {
+      headline = { label: 'Leave by', value: departureLabel }
+      secondary = { label: 'Arrive at', value: arrivalLabel }
+    }
+    rows = [
+      ...(direction === 'alarm' ? [{ label: 'Alarm', value: alarmLabel }] : []),
+      { label: 'Wake-up buffer', value: `${bufferMinutes} min` },
+      { label: 'Start getting ready', value: startGettingReadyLabel },
+      { label: 'Morning routine', value: `${totalActivityMinutes} min` },
+      ...driveTimeRow,
+      ...(direction === 'target' ? [{ label: 'Arrive by', value: arrivalLabel }] : []),
+    ]
+  } else {
+    headline =
+      direction === 'alarm'
+        ? { label: "You'll need to leave at", value: departureLabel }
+        : { label: 'Set your alarm for', value: alarmLabel }
+    rows = [
+      ...(direction === 'alarm' ? [{ label: 'Alarm', value: alarmLabel }] : [{ label: 'You need to leave', value: departureLabel }]),
+      { label: 'Morning routine', value: `${totalActivityMinutes} min` },
+      { label: 'Wake-up buffer', value: `${bufferMinutes} min` },
+      { label: 'Start getting ready', value: startGettingReadyLabel },
+    ]
+  }
+
+  const resultView = useInView<HTMLDivElement>()
+  const showSummaryBar = isReady && !resultView.inView
+
+  const timeInputLabel =
+    mode === 'travel'
+      ? direction === 'target'
+        ? 'What time do you need to arrive?'
+        : 'What time is your alarm?'
+      : direction === 'target'
+        ? 'What time do you need to leave the house?'
+        : 'What time is your alarm?'
+  const timeValue = direction === 'target' ? targetTime : alarmTime
+  const onTimeChange = direction === 'target' ? setTargetTime : setAlarmTime
 
   return (
-    <PageLayout
-      title="Morning Calc"
-      headerRight={
-        <div className="flex items-center gap-2">
-          <ModeToggle value={mode} onChange={setMode} />
-          <DirectionToggle value={direction} onChange={setDirection} />
-        </div>
-      }
-    >
-      <div className="flex flex-col gap-5">
-        {mode === 'wake-up' ? (
-          direction === 'target' ? (
-            <div>
-              <h3 className="text-xs font-semibold uppercase tracking-wide text-neutral-500 dark:text-neutral-400 mb-2">
-                What time do you need to leave the house?
-              </h3>
-              <input
-                type="time"
-                value={targetTime}
-                onChange={(e) => setTargetTime(e.target.value)}
-                className="min-h-11 w-full rounded-lg border border-neutral-200 dark:border-neutral-700
-                  bg-white dark:bg-neutral-900 px-3 text-base text-neutral-900 dark:text-white"
-              />
+    <PageLayout title="Morning Calc">
+      <div className="mx-auto max-w-md pb-24 lg:max-w-5xl lg:pb-4">
+        <div className="grid gap-5 lg:grid-cols-2 lg:items-start lg:gap-x-10">
+          <section className="flex flex-col gap-5 lg:col-start-1">
+            <div className="flex flex-col gap-2">
+              <ModeToggle value={mode} onChange={setMode} />
+              <DirectionToggle mode={mode} value={direction} onChange={setDirection} />
             </div>
-          ) : (
-            <div>
-              <h3 className="text-xs font-semibold uppercase tracking-wide text-neutral-500 dark:text-neutral-400 mb-2">
-                What time is your alarm?
-              </h3>
-              <input
-                type="time"
-                value={alarmTime}
-                onChange={(e) => setAlarmTime(e.target.value)}
-                className="min-h-11 w-full rounded-lg border border-neutral-200 dark:border-neutral-700
-                  bg-white dark:bg-neutral-900 px-3 text-base text-neutral-900 dark:text-white"
-              />
-            </div>
-          )
-        ) : (
-          <TravelPanel
-            destination={travel.destination}
-            onDestinationChange={travel.setDestination}
-            timeLabel={direction === 'target' ? 'What time do you need to arrive?' : 'What time is your alarm?'}
-            timeValue={direction === 'target' ? targetTime : alarmTime}
-            onTimeChange={direction === 'target' ? setTargetTime : setAlarmTime}
-            mapsReady={travel.mapsReady}
-            status={travel.status}
-            error={travel.error}
-            travelText={travel.travelText}
-            summaryLabel={direction === 'target' ? 'leave by' : 'arrive by'}
-            summaryValue={direction === 'target' ? departureLabel : arrivalLabel}
-          />
-        )}
 
-        <div>
-          <h3 className="text-xs font-semibold uppercase tracking-wide text-neutral-500 dark:text-neutral-400 mb-2">
-            Morning activities
-          </h3>
-          <ActivityChecklist
-            customActivities={customActivities}
-            isSelected={activitySelection.isSelected}
-            onToggle={activitySelection.toggle}
-            onRemoveCustom={removeCustomActivity}
-          />
-          <div className="mt-3">
-            <CustomActivityForm onAdd={addCustomActivity} />
+            {mode === 'travel' ? (
+              <TravelPanel
+                destination={travel.destination}
+                onDestinationChange={travel.setDestination}
+                savedLocations={savedLocations.locations}
+                onSaveLocation={savedLocations.add}
+                onRemoveLocation={savedLocations.remove}
+                originId={travel.originId}
+                onOriginChange={travel.setOriginId}
+                timeLabel={timeInputLabel}
+                timeValue={timeValue}
+                onTimeChange={onTimeChange}
+                mapsReady={travel.mapsReady}
+                status={travel.status}
+                error={travel.error}
+              />
+            ) : (
+              <div>
+                <label htmlFor={timeFieldId} className={`block ${SECTION_HEADING}`}>
+                  {timeInputLabel}
+                </label>
+                <input
+                  id={timeFieldId}
+                  type="time"
+                  value={timeValue}
+                  onChange={(e) => onTimeChange(e.target.value)}
+                  className={FIELD}
+                />
+              </div>
+            )}
+          </section>
+
+          {/* Right column on desktop (sticky); directly under the trip inputs on phones. */}
+          <div
+            ref={resultView.ref}
+            className="scroll-mt-20 lg:sticky lg:top-20 lg:col-start-2 lg:row-start-1 lg:row-span-2"
+          >
+            <ResultCard
+              isReady={isReady}
+              emptyMessage={emptyMessage}
+              headline={headline}
+              secondary={secondary}
+              rows={rows}
+              selectedActivities={selectedActivities}
+            />
           </div>
+
+          <details open={routineStartsOpen} className="group lg:col-start-1">
+            <summary
+              className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3
+                rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900
+                px-4 select-none [&::-webkit-details-marker]:hidden"
+            >
+              <span className="text-sm font-semibold text-neutral-900 dark:text-white">Morning routine</span>
+              <span className="flex items-center gap-2 text-sm text-neutral-500 dark:text-neutral-400">
+                {selectedActivities.length} selected · {totalActivityMinutes} min · {bufferMinutes} min buffer
+                <span aria-hidden className="transition-transform group-open:rotate-90">
+                  ›
+                </span>
+              </span>
+            </summary>
+            <div className="mt-4 flex flex-col gap-5">
+              <ActivityChecklist
+                customActivities={customActivities}
+                isSelected={activitySelection.isSelected}
+                onToggle={activitySelection.toggle}
+                onRemoveCustom={removeCustomActivity}
+              />
+              <CustomActivityForm onAdd={addCustomActivity} />
+              <BufferSelector
+                selection={bufferSelection}
+                customMinutes={customBufferMinutes}
+                onSelect={setBufferSelection}
+                onCustomMinutesChange={setCustomBufferMinutes}
+              />
+            </div>
+          </details>
         </div>
-
-        <BufferSelector
-          selection={bufferSelection}
-          customMinutes={customBufferMinutes}
-          onSelect={setBufferSelection}
-          onCustomMinutesChange={setCustomBufferMinutes}
-        />
-
-        <ResultCard
-          isReady={isReady}
-          emptyMessage={emptyMessage}
-          headlineLabel={headlineLabel}
-          headlineValue={headlineValue}
-          rows={rows}
-          selectedActivities={selectedActivities}
-        />
       </div>
+
+      {showSummaryBar && (
+        <SummaryBar
+          headline={headline}
+          secondary={secondary}
+          onClick={() => resultView.element?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+        />
+      )}
     </PageLayout>
   )
 }

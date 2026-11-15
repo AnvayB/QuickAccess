@@ -26,7 +26,7 @@ export function CustomActivityForm({ onAdd }: CustomActivityFormProps) {
         onChange={(e) => setLabel(e.target.value)}
         placeholder="Custom activity…"
         className="min-h-9 flex-1 rounded-lg border border-neutral-200 dark:border-neutral-700
-          bg-white dark:bg-neutral-900 px-3 text-sm text-neutral-900 dark:text-white
+          bg-white dark:bg-neutral-900 px-3 text-base sm:text-sm text-neutral-900 dark:text-white
           placeholder:text-neutral-400 dark:placeholder:text-neutral-500"
       />
       <input
@@ -36,7 +36,7 @@ export function CustomActivityForm({ onAdd }: CustomActivityFormProps) {
         onChange={(e) => setMinutes(e.target.value)}
         placeholder="min"
         className="min-h-9 w-16 rounded-lg border border-neutral-200 dark:border-neutral-700
-          bg-white dark:bg-neutral-900 px-2 text-sm text-neutral-900 dark:text-white
+          bg-white dark:bg-neutral-900 px-2 text-base sm:text-sm text-neutral-900 dark:text-white
           placeholder:text-neutral-400 dark:placeholder:text-neutral-500"
       />
       <button

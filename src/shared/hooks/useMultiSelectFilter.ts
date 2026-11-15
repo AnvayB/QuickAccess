@@ -7,8 +7,8 @@ export interface MultiSelectFilter {
   clear: () => void
 }
 
-export function useMultiSelectFilter(): MultiSelectFilter {
-  const [selected, setSelected] = useState<Set<string>>(() => new Set())
+export function useMultiSelectFilter(initial: Iterable<string> = []): MultiSelectFilter {
+  const [selected, setSelected] = useState<Set<string>>(() => new Set(initial))
 
   const toggle = useCallback((value: string) => {
     setSelected((prev) => {
