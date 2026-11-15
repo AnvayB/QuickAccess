@@ -1,21 +1,14 @@
-let loadPromise: Promise<void> | null = null
+import { importLibrary, setOptions } from '@googlemaps/js-api-loader'
 
-function injectScript(apiKey: string): Promise<void> {
-  return new Promise((resolve, reject) => {
-    const script = document.createElement('script')
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&loading=async&v=weekly`
-    script.async = true
-    script.onload = () => resolve()
-    script.onerror = () => reject(new Error('Failed to load Google Maps'))
-    document.head.appendChild(script)
-  })
-}
+let loadPromise: Promise<void> | null = null
+let optionsSet = false
 
 /**
- * Loads the Maps JS bootstrap plus the two libraries this app uses:
- * `routes` (Routes API, traffic-aware drive times) and `places` (Places API (New),
- * address autocomplete). The older Distance Matrix / legacy Places APIs are not
- * available to new Google Cloud projects, so we don't use them.
+ * Loads the Maps JS API through Google's official loader, which installs the global
+ * `google.maps.importLibrary()` that `travelTime.ts` relies on, then pulls in the two
+ * libraries this app uses: `routes` (Routes API, traffic-aware drive times) and
+ * `places` (Places API (New), address autocomplete). The older Distance Matrix /
+ * legacy Places APIs are not available to new Google Cloud projects, so we don't use them.
  */
 export function loadGoogleMaps(): Promise<void> {
   if (loadPromise) return loadPromise
@@ -25,10 +18,12 @@ export function loadGoogleMaps(): Promise<void> {
     if (!apiKey) {
       throw new Error('Missing VITE_GOOGLE_MAPS_API_KEY — add it to your .env file')
     }
-    if (typeof google === 'undefined' || !google.maps?.importLibrary) {
-      await injectScript(apiKey)
+    // setOptions may only be called once; later calls just log a warning.
+    if (!optionsSet) {
+      setOptions({ key: apiKey, v: 'weekly' })
+      optionsSet = true
     }
-    await Promise.all([google.maps.importLibrary('routes'), google.maps.importLibrary('places')])
+    await Promise.all([importLibrary('routes'), importLibrary('places')])
   })()
 
   // Allow a retry (e.g. after fixing the key) instead of caching the failure.
