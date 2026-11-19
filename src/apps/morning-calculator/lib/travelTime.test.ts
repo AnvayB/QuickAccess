@@ -8,7 +8,14 @@ function at(hours: number, minutes = 0, dayOffset = 0): Date {
   return new Date(2026, 10, 14 + dayOffset, hours, minutes, 0)
 }
 
-type Request = { departureTime: Date; origin: unknown; destination: string; routingPreference: string; fields: string[] }
+type Request = {
+  departureTime: Date
+  origin: unknown
+  destination: string
+  routingPreference: string
+  trafficModel: string
+  fields: string[]
+}
 
 function stubRoutes(compute: (req: Request) => { durationMillis: number | null; staticDurationMillis?: number } | 'none') {
   const computeRoutes = vi.fn(async (req: Request) => {
@@ -154,6 +161,51 @@ describe('estimateTravel — failures and caching', () => {
     await estimateTravel('A', uniqueDestination(), { kind: 'depart-at', at: at(8) })
     await estimateTravel('B', uniqueDestination(), { kind: 'depart-at', at: at(8) })
     expect(compute).toHaveBeenCalledTimes(3)
+  })
+})
+
+describe('estimateTravel — traffic model and fresh lookups', () => {
+  const trip = { kind: 'depart-at', at: at(8) } as const
+
+  it('asks for the typical traffic forecast by default', async () => {
+    const compute = stubRoutes(() => ({ durationMillis: MIN }))
+    await estimateTravel('A', uniqueDestination(), trip)
+    expect(compute.mock.calls[0][0].trafficModel).toBe('bestguess')
+  })
+
+  it('can ask for the cautious (pessimistic) forecast', async () => {
+    const compute = stubRoutes(() => ({ durationMillis: MIN }))
+    await estimateTravel('A', uniqueDestination(), trip, { trafficModel: 'pessimistic' })
+    expect(compute.mock.calls[0][0].trafficModel).toBe('pessimistic')
+  })
+
+  it('never serves a typical estimate when the cautious one was requested (and vice versa)', async () => {
+    const compute = stubRoutes((req) => ({ durationMillis: (req.trafficModel === 'pessimistic' ? 40 : 25) * MIN }))
+    const destination = uniqueDestination()
+    const typical = await estimateTravel('A', destination, trip, { trafficModel: 'bestguess' })
+    const cautious = await estimateTravel('A', destination, trip, { trafficModel: 'pessimistic' })
+    expect(typical.minutes).toBe(25)
+    expect(cautious.minutes).toBe(40)
+    expect(compute).toHaveBeenCalledTimes(2)
+  })
+
+  it('a fresh lookup skips the cache so live traffic can actually update', async () => {
+    let duration = 20
+    const compute = stubRoutes(() => ({ durationMillis: duration * MIN }))
+    const destination = uniqueDestination()
+    expect((await estimateTravel('A', destination, trip)).minutes).toBe(20)
+
+    duration = 35 // an accident happens
+    expect((await estimateTravel('A', destination, trip)).minutes).toBe(20) // cached
+    expect((await estimateTravel('A', destination, trip, { fresh: true })).minutes).toBe(35)
+    expect(compute).toHaveBeenCalledTimes(2)
+  })
+
+  it('passes the options through every iteration of an arrive-by lookup', async () => {
+    const compute = stubRoutes(() => ({ durationMillis: 40 * MIN }))
+    await estimateTravel('A', uniqueDestination(), { kind: 'arrive-by', at: at(9) }, { trafficModel: 'pessimistic', fresh: true })
+    expect(compute.mock.calls.length).toBeGreaterThan(1)
+    for (const [req] of compute.mock.calls) expect(req.trafficModel).toBe('pessimistic')
   })
 })
 

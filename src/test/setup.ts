@@ -9,5 +9,6 @@ afterEach(() => {
   cleanup()
   localStorage.clear()
   vi.unstubAllGlobals()
+  vi.useRealTimers()
   vi.restoreAllMocks()
 })

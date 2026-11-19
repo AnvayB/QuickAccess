@@ -1,5 +1,14 @@
 import { describe, expect, it } from 'vitest'
-import { addMinutes, formatMinutesAsClock, nextOccurrence, parseTimeToMinutes, subtractMinutes } from './time'
+import {
+  addMinutes,
+  dayOptions,
+  describeDay,
+  formatMinutesAsClock,
+  nextOccurrence,
+  parseTimeToMinutes,
+  resolveTripDate,
+  subtractMinutes,
+} from './time'
 
 describe('parseTimeToMinutes', () => {
   it('parses HH:MM from a time input', () => {
@@ -61,5 +70,60 @@ describe('nextOccurrence', () => {
 
   it('treats exactly-now as already passed', () => {
     expect(nextOccurrence(7 * 60, now).getDate()).toBe(15)
+  })
+})
+
+describe('choosing the day of the trip', () => {
+  // Saturday 11:06 PM, the situation where "9:30 AM" silently meant Sunday.
+  const saturdayNight = new Date(2026, 10, 14, 23, 6)
+
+  describe('resolveTripDate', () => {
+    it("'auto' is the next occurrence of that time", () => {
+      const result = resolveTripDate(9 * 60 + 30, 'auto', saturdayNight)
+      expect([result.getMonth(), result.getDate(), result.getHours(), result.getMinutes()]).toEqual([10, 15, 9, 30])
+    })
+
+    it('an explicit date puts the time on that day', () => {
+      const result = resolveTripDate(9 * 60 + 30, '2026-11-16', saturdayNight) // the Monday commute
+      expect([result.getMonth(), result.getDate(), result.getHours(), result.getMinutes()]).toEqual([10, 16, 9, 30])
+    })
+
+    it('can be today even if that time has passed (the caller decides what to do)', () => {
+      const result = resolveTripDate(9 * 60, '2026-11-14', saturdayNight)
+      expect(result.getTime()).toBeLessThan(saturdayNight.getTime())
+    })
+
+    it('falls back to auto for a malformed date', () => {
+      expect(resolveTripDate(9 * 60, 'garbage', saturdayNight)).toEqual(nextOccurrence(9 * 60, saturdayNight))
+    })
+  })
+
+  describe('describeDay', () => {
+    it('says Today and Tomorrow, otherwise the weekday and date', () => {
+      expect(describeDay(new Date(2026, 10, 14, 9), saturdayNight)).toBe('Today')
+      expect(describeDay(new Date(2026, 10, 15, 9), saturdayNight)).toBe('Tomorrow')
+      expect(describeDay(new Date(2026, 10, 16, 9), saturdayNight)).toBe('Mon, Nov 16')
+    })
+  })
+
+  describe('dayOptions', () => {
+    it('offers "Next" plus the coming week, starting today', () => {
+      const options = dayOptions(saturdayNight)
+      expect(options).toHaveLength(8)
+      expect(options[0]).toEqual({ value: 'auto', label: 'Next' })
+      expect(options[1]).toEqual({ value: '2026-11-14', label: 'Today · Sat, Nov 14' })
+      expect(options[2]).toEqual({ value: '2026-11-15', label: 'Tomorrow · Sun, Nov 15' })
+      expect(options[3]).toEqual({ value: '2026-11-16', label: 'Mon, Nov 16' })
+      expect(options.at(-1)?.value).toBe('2026-11-20')
+    })
+
+    it('spells out which day "Next" means once a time is known', () => {
+      expect(dayOptions(saturdayNight, 9 * 60 + 30)[0].label).toBe('Next · Sun, Nov 15')
+    })
+
+    it('rolls correctly across a month and year boundary', () => {
+      const options = dayOptions(new Date(2026, 11, 29, 8))
+      expect(options.map((o) => o.value)).toContain('2027-01-02')
+    })
   })
 })

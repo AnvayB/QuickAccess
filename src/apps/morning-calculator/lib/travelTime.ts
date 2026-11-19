@@ -2,6 +2,15 @@ import type { Coordinates } from './geolocation'
 
 export type Origin = Coordinates | string
 
+/** Google's traffic assumptions: the typical forecast, or a cautious worst-case one. */
+export type TrafficModel = 'bestguess' | 'pessimistic'
+
+export interface EstimateOptions {
+  trafficModel?: TrafficModel
+  /** Skip the short-lived cache, e.g. when refreshing live traffic. */
+  fresh?: boolean
+}
+
 export interface TravelEstimate {
   /** Drive time including predicted traffic, rounded up. */
   minutes: number
@@ -25,11 +34,16 @@ function originKey(origin: Origin): string {
   return typeof origin === 'string' ? origin : `${origin.lat.toFixed(4)},${origin.lng.toFixed(4)}`
 }
 
-async function queryDuration(origin: Origin, destination: string, departAt: Date): Promise<TravelEstimate> {
+async function queryDuration(
+  origin: Origin,
+  destination: string,
+  departAt: Date,
+  { trafficModel = 'bestguess', fresh = false }: EstimateOptions,
+): Promise<TravelEstimate> {
   const departureTime = new Date(Math.max(departAt.getTime(), Date.now() + MIN_LEAD_MS))
-  const key = [originKey(origin), destination, Math.round(departureTime.getTime() / CACHE_BUCKET_MS)].join('|')
+  const key = [originKey(origin), destination, trafficModel, Math.round(departureTime.getTime() / CACHE_BUCKET_MS)].join('|')
   const hit = cache.get(key)
-  if (hit && Date.now() - hit.at < CACHE_TTL_MS) return hit.value
+  if (!fresh && hit && Date.now() - hit.at < CACHE_TTL_MS) return hit.value
 
   let route
   try {
@@ -39,6 +53,7 @@ async function queryDuration(origin: Origin, destination: string, departAt: Date
       destination,
       travelMode: 'DRIVING',
       routingPreference: 'TRAFFIC_AWARE_OPTIMAL',
+      trafficModel,
       departureTime,
       fields: ['durationMillis', 'staticDurationMillis'],
     })
@@ -75,14 +90,15 @@ export async function estimateTravel(
   origin: Origin,
   destination: string,
   anchor: TravelAnchor,
+  options: EstimateOptions = {},
 ): Promise<TravelEstimate> {
-  if (anchor.kind === 'depart-at') return queryDuration(origin, destination, anchor.at)
+  if (anchor.kind === 'depart-at') return queryDuration(origin, destination, anchor.at, options)
 
   let guessMs = 30 * 60_000
   let result: TravelEstimate
   let iterations = 0
   do {
-    result = await queryDuration(origin, destination, new Date(anchor.at.getTime() - guessMs))
+    result = await queryDuration(origin, destination, new Date(anchor.at.getTime() - guessMs), options)
     const nextGuessMs = result.minutes * 60_000
     const converged = Math.abs(nextGuessMs - guessMs) <= 60_000
     guessMs = nextGuessMs

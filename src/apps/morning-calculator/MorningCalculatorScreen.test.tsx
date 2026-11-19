@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor, within } from '@testing-library/react'
+import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
@@ -581,5 +581,194 @@ describe('summary bar (phones)', () => {
     reportVisibility(false)
     await user.click(await screen.findByRole('button', { name: /jump to full result/i }))
     expect(scrollIntoView).toHaveBeenCalled()
+  })
+})
+
+/** Freezes only the clock (not timers) so debounces and async queries still run normally. */
+function freezeClock(date: Date) {
+  vi.useFakeTimers({ toFake: ['Date'], now: date })
+}
+
+const SATURDAY_NIGHT = new Date(2026, 10, 14, 23, 6) // the next "9:30 AM" is Sunday
+const SUNDAY_7AM = new Date(2026, 10, 15, 7, 0)
+
+async function planArrival(time: string) {
+  const user = userEvent.setup()
+  renderScreen()
+  await user.type(destinationField(), '1 Office Way')
+  setTime(/arrive/i, time)
+  await screen.findByText('Wake up at')
+  return user
+}
+
+const lastAnchor = () => vi.mocked(estimateTravel).mock.calls.at(-1)![2]
+const lastOptions = () => vi.mocked(estimateTravel).mock.calls.at(-1)![3]
+
+describe('day of the trip', () => {
+  it('"Next" says which day it means, so 9:30 AM on a Saturday night is clearly Sunday', async () => {
+    freezeClock(SATURDAY_NIGHT)
+    await planArrival('09:30')
+    const day = screen.getByLabelText('Day')
+    expect(within(day).getByRole('option', { name: 'Next · Sun, Nov 15' })).toBeInTheDocument()
+    expect(day).toHaveValue('auto')
+  })
+
+  it('plans for the next occurrence by default', async () => {
+    freezeClock(SATURDAY_NIGHT)
+    await planArrival('09:30')
+    expect(lastAnchor().at.getDate()).toBe(15)
+  })
+
+  it('lets you check a different day, e.g. Monday morning rush hour', async () => {
+    freezeClock(SATURDAY_NIGHT)
+    const user = await planArrival('09:30')
+    await user.selectOptions(screen.getByLabelText('Day'), 'Mon, Nov 16')
+    await waitFor(() => expect(lastAnchor().at.getDate()).toBe(16))
+    expect([lastAnchor().at.getHours(), lastAnchor().at.getMinutes()]).toEqual([9, 30])
+  })
+
+  it('offers today and tomorrow by name', async () => {
+    freezeClock(SATURDAY_NIGHT)
+    renderScreen()
+    const day = screen.getByLabelText('Day')
+    expect(within(day).getByRole('option', { name: 'Today · Sat, Nov 14' })).toBeInTheDocument()
+    expect(within(day).getByRole('option', { name: 'Tomorrow · Sun, Nov 15' })).toBeInTheDocument()
+  })
+
+  it('refuses a time that has already passed today instead of quoting "right now" traffic', async () => {
+    freezeClock(SATURDAY_NIGHT)
+    const user = userEvent.setup()
+    renderScreen()
+    await user.type(destinationField(), '1 Office Way')
+    await user.selectOptions(screen.getByLabelText('Day'), 'Today · Sat, Nov 14')
+    setTime(/arrive/i, '09:30')
+
+    expect(await screen.findByRole('alert')).toHaveTextContent(/already passed today/i)
+    expect(screen.queryByText('Wake up at')).not.toBeInTheDocument()
+    expect(estimateTravel).not.toHaveBeenCalled()
+
+    await user.selectOptions(screen.getByLabelText('Day'), 'Tomorrow · Sun, Nov 15')
+    await screen.findByText('Wake up at')
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument()
+  })
+
+  it('hides the previous day’s result while the new day is loading', async () => {
+    freezeClock(SATURDAY_NIGHT)
+    const user = await planArrival('09:30')
+    vi.mocked(estimateTravel).mockReturnValue(new Promise(() => {}))
+    await user.selectOptions(screen.getByLabelText('Day'), 'Mon, Nov 16')
+    expect(screen.queryByText('Leave by')).not.toBeInTheDocument()
+  })
+
+  it('works in the "I have an alarm" direction too', async () => {
+    freezeClock(SATURDAY_NIGHT)
+    const user = userEvent.setup()
+    renderScreen()
+    await user.click(screen.getByRole('button', { name: 'I have an alarm' }))
+    await user.type(destinationField(), '1 Office Way')
+    setTime(/alarm/i, '06:30')
+    await user.selectOptions(screen.getByLabelText('Day'), 'Mon, Nov 16')
+    await waitFor(() => expect(lastAnchor().at.getDate()).toBe(16))
+    expect(lastAnchor().kind).toBe('depart-at')
+  })
+})
+
+describe('forecast vs live traffic', () => {
+  it('labels a future trip as a forecast for that day', async () => {
+    freezeClock(SATURDAY_NIGHT)
+    await planArrival('09:30')
+    expect(screen.getByText('Typical traffic forecast for Tomorrow (Sunday)')).toBeInTheDocument()
+    expect(screen.queryByText(/live traffic/i)).not.toBeInTheDocument()
+  })
+
+  it('names the weekday for trips further out', async () => {
+    freezeClock(SATURDAY_NIGHT)
+    const user = await planArrival('09:30')
+    await user.selectOptions(screen.getByLabelText('Day'), 'Mon, Nov 16')
+    expect(await screen.findByText('Typical traffic forecast for Mon, Nov 16')).toBeInTheDocument()
+  })
+
+  it('says it is live when you are about to leave, with when it was checked', async () => {
+    freezeClock(SUNDAY_7AM)
+    await planArrival('08:00') // 30 min drive -> leave 7:30, within the hour
+    expect(screen.getByText(/^Live traffic · updated 7:00 AM · rechecks every 3 min$/)).toBeInTheDocument()
+  })
+
+  it('keeps live traffic fresh by re-checking every 3 minutes, bypassing the cache', async () => {
+    freezeClock(SUNDAY_7AM)
+    const intervals: (() => void)[] = []
+    const realSetInterval = globalThis.setInterval
+    vi.spyOn(globalThis, 'setInterval').mockImplementation(((fn: () => void, ms?: number, ...args: unknown[]) => {
+      if (ms === 3 * 60_000) {
+        intervals.push(fn)
+        return 0
+      }
+      return realSetInterval(fn, ms, ...(args as []))
+    }) as unknown as typeof setInterval)
+
+    await planArrival('08:00')
+    expect(intervals).toHaveLength(1)
+    expect(lastOptions()).toMatchObject({ fresh: false })
+
+    vi.mocked(estimateTravel).mockResolvedValue({ minutes: 50, staticMinutes: 30 }) // traffic builds up
+    await act(async () => intervals[0]())
+    await waitFor(() => expect(estimateTravel).toHaveBeenCalledTimes(2))
+    expect(lastOptions()).toMatchObject({ fresh: true })
+    await waitFor(() => expect(figure('Leave by')).toBe('7:10 AM')) // 8:00 - 50 min
+  })
+
+  it('does not poll for a trip that is hours away', async () => {
+    freezeClock(SATURDAY_NIGHT)
+    const delays: (number | undefined)[] = []
+    const realSetInterval = globalThis.setInterval
+    vi.spyOn(globalThis, 'setInterval').mockImplementation(((fn: () => void, ms?: number, ...args: unknown[]) => {
+      delays.push(ms)
+      return realSetInterval(fn, ms, ...(args as []))
+    }) as unknown as typeof setInterval)
+    await planArrival('09:30')
+    expect(delays).not.toContain(3 * 60_000)
+  })
+
+  it('stops polling when the trip changes to one that is far away', async () => {
+    freezeClock(SUNDAY_7AM)
+    const cleared: unknown[] = []
+    vi.spyOn(globalThis, 'clearInterval').mockImplementation(((id: unknown) => void cleared.push(id)) as typeof clearInterval)
+    const user = await planArrival('08:00')
+    await user.selectOptions(screen.getByLabelText('Day'), 'Tomorrow · Mon, Nov 16') // the clock says Sunday
+    await waitFor(() => expect(cleared.length).toBeGreaterThan(0))
+  })
+})
+
+describe('traffic estimate (typical vs cautious)', () => {
+  it('defaults to Typical', () => {
+    renderScreen()
+    expect(screen.getByLabelText('Traffic estimate')).toHaveValue('bestguess')
+  })
+
+  it('asks Google for the pessimistic model when Cautious is chosen', async () => {
+    freezeClock(SATURDAY_NIGHT)
+    const user = await planArrival('09:30')
+    expect(lastOptions()).toMatchObject({ trafficModel: 'bestguess' })
+
+    vi.mocked(estimateTravel).mockResolvedValue({ minutes: 45, staticMinutes: 20 })
+    await user.selectOptions(screen.getByLabelText('Traffic estimate'), 'Cautious')
+    await waitFor(() => expect(lastOptions()).toMatchObject({ trafficModel: 'pessimistic' }))
+    await waitFor(() => expect(figure('Leave by')).toBe('8:45 AM'))
+    expect(screen.getByText('Cautious traffic forecast for Tomorrow (Sunday)')).toBeInTheDocument()
+  })
+
+  it('remembers the choice next time', async () => {
+    const user = userEvent.setup()
+    const first = renderScreen()
+    await user.selectOptions(screen.getByLabelText('Traffic estimate'), 'Cautious')
+    first.unmount()
+    renderScreen()
+    expect(screen.getByLabelText('Traffic estimate')).toHaveValue('pessimistic')
+  })
+
+  it('ignores a corrupted stored value', () => {
+    localStorage.setItem('morning-calc:traffic-model', 'nonsense')
+    renderScreen()
+    expect(screen.getByLabelText('Traffic estimate')).toHaveValue('bestguess')
   })
 })

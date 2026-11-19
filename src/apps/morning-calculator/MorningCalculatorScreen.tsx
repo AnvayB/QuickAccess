@@ -84,12 +84,12 @@ export function MorningCalculatorScreen() {
   const travelAnchorMinutes =
     mode === 'travel' ? (direction === 'alarm' ? departureForward : targetInputMinutes) : null
   const savedLocations = useSavedLocations()
-  const travel = useTravelPlan(
-    mode === 'travel',
-    travelAnchorMinutes,
-    direction === 'alarm' ? 'depart-at' : 'arrive-by',
-    savedLocations.locations,
-  )
+  const travel = useTravelPlan({
+    enabled: mode === 'travel',
+    anchorMinutes: travelAnchorMinutes,
+    anchorKind: direction === 'alarm' ? 'depart-at' : 'arrive-by',
+    savedLocations: savedLocations.locations,
+  })
 
   // Backward: leave/arrive -> start getting ready -> alarm.
   const travelDepartureMinutes =
@@ -239,6 +239,12 @@ export function MorningCalculatorScreen() {
                 onRemoveLocation={savedLocations.remove}
                 originId={travel.originId}
                 onOriginChange={travel.setOriginId}
+                day={travel.day}
+                onDayChange={travel.setDay}
+                anchorMinutes={travelAnchorMinutes}
+                trafficModel={travel.trafficModel}
+                onTrafficModelChange={travel.setTrafficModel}
+                trafficSource={travel.trafficSource}
                 timeLabel={timeInputLabel}
                 timeValue={timeValue}
                 onTimeChange={onTimeChange}
